@@ -10,6 +10,7 @@ import random
 #import pokebase
 #use my poor man reimplementation with cache
 from poorman_pokeapi_client import Pokepoor
+from config import myconfig
 
 
 ########################################################################################
@@ -32,29 +33,17 @@ def init():
 #
 @app.route('/')
 def homepage():
-    return render_template("home01.html", pagename="Home", logo= Pokepoor.getPokemon(random.randrange(1, 150)).spriteURL)
+    return render_template("home01.html", pagename="Home", logo= Pokepoor.getPokemon(random.randrange(1, myconfig["max pokemon id"])).spriteURL)
 
 
 @app.route('/randomPokemon')
 def randomPokemonPage():
-    pokeid = random.randrange(1,150)
+    pokeid = random.randrange(1,myconfig["max pokemon id"])
     pokemon = Pokepoor.getPokemon(pokeid)
     
-    desc= f"""
-Name :  {pokemon.name}
-ID:     {pokemon.id}
-species:{pokemon.species}
-sprites:<img src="{pokemon.spriteURL}" />    
-"""
-    print(desc)
+    desc= str(pokemon)
 
-    spe=f"""
-Name:   {pokemon.species}
-Fr:     {pokemon.translations["fr"]}    
-    """
-    print(spe)
-
-    return render_template("template01.html", pagename="Random!", pagecontent=(desc + spe).replace('\n', '\n<br/>'), logo= pokemon.spriteURL)
+    return render_template("template01.html", pagename="Random!", pagecontent=desc.replace('\n', '\n<br/>'), logo= pokemon.spriteURL if pokemon.spriteURL_big == "" else pokemon.spriteURL_big)
 
 
 

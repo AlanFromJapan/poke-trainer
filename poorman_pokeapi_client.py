@@ -13,6 +13,7 @@ class Pokepoor:
     id = 0
     species = []
     spriteURL = ""
+    spriteURL_big = ""
     #maps language to translation (ie: "fr" -> "Bulbizarre")
     translations= {}
 
@@ -21,18 +22,20 @@ class Pokepoor:
         self.id = id
         self.species = species
         self.spriteURL = sprite
+        self.spriteURL_big = ""
+
     
     def __str__(self) -> str:
         desc= f"""
-Name :  {self.name}
-ID:     {self.id}
-species:{self.species}
-sprites:{self.spriteURL}
+Name :          {self.name}
+ID:             {self.id}
+species:        {self.species}
+sprites:        {self.spriteURL}
+sprites (big):  {self.spriteURL_big}
 Translations:
 """
-
         for k in self.translations.keys():
-            desc = desc + f"   - {k}: {self.translations[k]}\n" 
+            desc = desc + f"                  - {k}: {self.translations[k]}\n" 
 
         return desc
 
@@ -49,6 +52,12 @@ Translations:
         j = json.loads(resp.text)
 
         p = Pokepoor(j["name"], j["id"], j["species"]["name"], j["sprites"]["front_default"])
+
+        #try to get a BIG image if exists
+        try:
+            p.spriteURL_big = j["sprites"]["other"]["official-artwork"]["front_default"]
+        finally:
+            pass
 
         #######
         ## 2- get name translations
