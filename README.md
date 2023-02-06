@@ -5,3 +5,6 @@ Could be multilingual, most likely won't for it's already a miracle if I have ti
 
 ## What
 Basically having young kids at home, poke-addicted, so it's a good way to use that to teach them a bit of reading, pronounciation, etc while having fun learning pokemon names while it lasts.
+
+## Technicalities
+I was planning to use the lib *pokebase* but it's SO SLOW it's unuseable. Apparently it's an issue that was raised 5 years ago and never fixed. I guess we all implemented a poor man request() -> get the json -> parse the 3 values you need and it's still only 10 lines of code but 10 times faster. Shame.

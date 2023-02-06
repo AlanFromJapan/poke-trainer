@@ -3,9 +3,14 @@ import os, sys
 import logging
 from logging.handlers import RotatingFileHandler
 import re
-import werkzeug 
-import pokebase
+import werkzeug
 import random
+
+# NOT using pokebase in the end, the performances are so badm it takes 3-5 sec to get the object though calling the URL + parsing the json is < 250ms
+#import pokebase
+#use my poor man reimplementation with cache
+from poorman_pokeapi_client import Pokepoor
+
 
 ########################################################################################
 ## Flask vars
@@ -27,32 +32,29 @@ def init():
 #
 @app.route('/')
 def homepage():
-    return render_template("home01.html", pagename="Home", logo= pokebase.SpriteResource('pokemon', random.randrange(1, 150)).url)
+    return render_template("home01.html", pagename="Home", logo= Pokepoor.getPokemon(random.randrange(1, 150)).spriteURL)
 
 
 @app.route('/randomPokemon')
 def randomPokemonPage():
     pokeid = random.randrange(1,150)
-    pokemon= pokebase.pokemon(pokeid)
-    specie=pokebase.pokemon_species(pokeid)
+    pokemon = Pokepoor.getPokemon(pokeid)
     
     desc= f"""
 Name :  {pokemon.name}
 ID:     {pokemon.id}
-url:    {pokemon.url}
-types:  {pokemon.types}
 species:{pokemon.species}
-sprites:<img src="{pokemon.sprites.front_default}" />    
+sprites:<img src="{pokemon.spriteURL}" />    
 """
     print(desc)
 
     spe=f"""
-Name:   {specie.name}
-Fr:     {specie.names[4].name}    
+Name:   {pokemon.species}
+Fr:     {pokemon.translations["fr"]}    
     """
     print(spe)
 
-    return render_template("template01.html", pagename="Random!", pagecontent=(desc + spe).replace('\n', '\n<br/>'), logo= pokebase.SpriteResource('pokemon', pokeid).url)
+    return render_template("template01.html", pagename="Random!", pagecontent=(desc + spe).replace('\n', '\n<br/>'), logo= pokemon.spriteURL)
 
 
 
