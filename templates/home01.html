@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <title>Poke-Trainer - {{ pagename }}</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  </head>
+<body>
+
+<table class="header">
+  <tr>
+    <td><a href="/">Home</a></td>
+    <td><a href="randomPokemon">Random Pokemon</a></td>
+  </tr>
+</table>
+<br/>
+<br/>
+<span class="homewelcome">Welcome to Poke-Trainer</span><br/>
+By AlanFromJapan / MIT license / Full source code here <a href="https://github.com/AlanFromJapan/poke-trainer">on Github</a>.<br/>
+This application is not approved nor affiliated with Pokemon or Nintendo or anyone.<br/>
+Don't sue me, go play Pokemon instead.<br/>
+This app couldn't exist without <b><a href="https://pokeapi.co/">PokeAPI</a></b> and the <b><a href="https://github.com/PokeAPI/pokebase">pokebase</a></b> module to wrap it up!
+<br/>
+<img src="{{logo}}" />
+{{ dbg }}
+</body>

@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <title>Poke-Trainer - {{ pagename }}</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  </head>
+<body>
+
+<table class="header">
+  <tr>
+    <td><a href="/">Home</a></td>
+  </tr>
+</table>
+<br/>
+<br/>
+
+<div class="settingsResponse">
+{% autoescape false %}
+    {{ pagecontent }}
+{% endautoescape %}
+</div>
+
+
+
+
+<script type="text/javascript">
+  //Adds a confirmation popup before submitting the form
+function clickConfirm(pname, pvalue, pmessage="Sure ?") {
+  if (confirm(pmessage)){
+    var f = document.getElementById('theForm');
+
+    var hiddenField = document.createElement('input');
+    hiddenField.type = 'hidden';
+    hiddenField.name = pname;
+    hiddenField.value = pvalue;
+
+    f.appendChild(hiddenField);
+    f.submit();
+  }
+
+}
+
+</script>
+
+</body>

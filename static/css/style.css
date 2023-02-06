@@ -1,0 +1,241 @@
+body {
+    background-color: black;
+    color: gainsboro;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/*--------------------------------------------------------------------------------------------------------*/
+/* Header */
+table.header{
+    width: 100%;
+    text-align: center;
+    height: 30px;
+    vertical-align: middle;
+}
+
+table.header tr td {
+    width:16%;
+}   
+
+/*--------------------------------------------------------------------------------------------------------*/
+/* Anchors */
+a {color:gainsboro; border-bottom: 1px dotted gold;}
+a:link {text-decoration: none;}
+a:active {font-weight: bold;}
+a:visited {color:gainsboro;}
+a:hover {
+    color:gold;
+    text-decoration: underline;
+}
+
+/*--------------------------------------------------------------------------------------------------------*/
+/* Found the glow effect here https://www.proglobalbusinesssolutions.com/css-hover-effects/ */
+table.header a {
+    color:gainsboro;    
+    transition: .5s; 
+    border-radius: 50%;
+    border-bottom: none;
+    font-weight: bold;
+}
+table.header a:before{  
+    background: gold;
+    transition: .5s;
+    transform: scale(.9);
+    z-index: -1;
+
+    border-radius: 50%;
+}
+table.header a:hover::before {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px gold;
+    }
+table.header a:hover {
+    color: gold;
+    box-shadow: 0 0 5px gold;
+    text-shadow: 0 0 5px gold;
+}
+
+/*--------------------------------------------------------------------------------------------------------*/
+/* History match list */
+table.matchhistory {
+    width: 90%;
+    border-width: 0px;
+    background-color: #262626;
+} 
+table.matchhistory td.opponent{
+    font-weight: bold;
+    color:goldenrod;
+    font-size:larger;
+}
+table.matchhistory td.outcomeVictory{
+    color:limegreen;
+    width:100px;
+    font-weight: bold;
+}
+table.matchhistory td.outcomeDefeat{
+    color: crimson;
+    width:100px;
+    font-weight: bold;
+}
+table.matchhistory td.deckmana{
+    width:75px;
+    text-align: center;
+}
+table.matchhistory td.time{
+    color: dimgray;
+    text-align: right;
+    font-size: smaller;
+    width: 175px;
+}
+table.matchhistory td.matchduration{
+    color: dimgray;
+    text-align: right;
+}
+table.matchhistory td.deckname{
+    text-transform: capitalize;
+}
+table.matchhistory td.deckname::before{
+    content:"「";
+}
+table.matchhistory td.deckname::after{
+    content:"」";
+}
+table.matchhistory td.tile{
+    width:100px; 
+}
+table.matchhistory td.tile img{
+    /* real width as small image is 146px */
+    width:90px; 
+}
+
+div.matchhistoryheaderdiv{
+    text-align: center;
+    width: 500px;
+    margin:auto;
+
+}
+table.matchhistoryheader{
+    width: 100%;
+    background-color: #262626;
+    border: gainsboro 5px solid;
+    text-align: center;
+ 
+    border-radius: 3px;   
+}
+
+/*--------------------------------------------------------------------------------------------------------*/
+/* Decks stats */
+table.decksstats  {
+    /* border: solid 1px white; */
+
+    width:90%;
+    background-color: #262626;
+}
+table.decksstats td {
+    /* border: solid 1px red; */
+}
+table.decksstats .decktile {
+    width:100px;
+}
+table.decksstats .decktile img {
+    /* real width as small image is 146px */
+    width:90px;
+}
+table.decksstats td.deckname{
+    width:300px;
+}
+table.decksstats td.deckname .name{
+    font-weight: bold;
+    color:goldenrod;
+    font-size:larger;
+}
+table.decksstats td.deckname .id{
+    color: dimgray;
+    font-size: x-small;
+}
+table.decksstats .winnerdeck{    
+    color:limegreen;
+}
+
+div.deckstatsmanadiv{
+    text-align: center;
+    width: 300px;
+    margin:auto;
+
+}
+table.deckstatsmana{
+    width: 300px;
+    background-color: #262626;
+    border: gainsboro 5px solid;
+    text-align: center;
+ 
+    border-radius: 3px;   
+}
+
+/*--------------------------------------------------------------------------------------------------------*/
+/* Home page */
+
+.homewelcome {
+    color: goldenrod;
+    font-weight:bolder;
+    font-size:x-large;
+}
+.generalstats {
+    font-style: italic;    
+    color: gainsboro;
+    margin-left: 30px;
+}
+.generalstats::before {
+    content:" ❖ ";
+}
+.generalstatsBG {
+    background-color: #262626;
+    width: 90%;
+    margin-left: 15px;
+    background-image: url("/images/Analysis-PNG-Clipart.png");
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-size: 100px;
+}
+.generalstatsheader {    
+    color: goldenrod;
+    font-weight:bolder;
+    font-size: large;
+    margin-left: 15px;
+}
+span.generalstatsHighlight{
+    color: darkgoldenrod;
+    font-weight:bold;
+}
+div.logobig {
+    text-align:center;
+    font-size: xx-small;
+}
+
+
+/*--------------------------------------------------------------------------------------------------------*/
+/* Settings */
+div.settingsResponse {
+    width: 100%;
+    text-align: center;
+}
+table.settingsTable {
+    /* border: solid 1px white; */
+
+    width:90%;
+    background-color: #262626;
+}
+.settingsButton {
+    width: 200px;
+    vertical-align: top;
+}
+.settingsButton button{
+    width: 200px;
+    height: 30px;
+}
+td.settingsTitle {
+    background-color: darkgray;
+    color: black;
+    font-weight: bold;
+}
+
