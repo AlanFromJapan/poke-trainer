@@ -61,27 +61,26 @@ table.header a:hover {
 /* Good doc about alignment https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Aligning_Items_in_a_Flex_Container */
 div.gameA_list {
     display: inline-flex;
-    border: solid 5px red;
     width: 90%;
     flex-direction: row;
     justify-content: space-between;
 
     text-align: center;
+    padding-left: 5%;
 }
 div.gameA_card {
     width: 15%;
     height: 200px;
     background-color: gainsboro;
-    border: solid 1px gold;
 
     
 }
 div.gameA_letter {
     color: black;
     font-size: 56px;
+    font-weight: bold;
     text-align: center;
     vertical-align: middle;
-    border: solid 1px greenyellow;
     
     transform: translateY(50%);
     margin: 0px;
@@ -90,4 +89,14 @@ div.gameA_letter {
 .gameA_img {
     width:100%;
     text-align: center;
+}
+.gameA_result  {
+    width:100%;
+    text-align: center;
+    font-size: larger;
+}
+.gameA_pokemon_name  {
+    font-weight: bolder;
+    font-size: larger;
+    color: goldenrod;
 }

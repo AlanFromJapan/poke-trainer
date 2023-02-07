@@ -7,27 +7,34 @@
 <h1>Game - L'initiale du Pokemon</h1>
 
 <div class="gameA_img"><img src="{{ pokemon.spriteURL_big }}" /></div>
-<div class="gameA_img"><span id="result"></span></div>
+<div class="gameA_result"><span id="result"></span> <a id="suivant" href='#' onclick='window.location.reload();' style="display:none;">Suivant...</a></div>
 
 <div class="gameA_list">
   {% for card in cards %}
-  <div class="gameA_card" onClick="submitResponse('{{ card.letter }}')">
+  <div class="gameA_card" onClick="submitResponse(this, '{{ card.letter }}');">
     <div class="gameA_letter">{{ card.letter }}</div>
   </div>
   {% endfor %}
 </div>
 
 <script type="text/javascript">
+
+
   //Shows the result of the choice
-function submitResponse(letter) {
+function submitResponse(card, letter) {
   var r = document.getElementById('result');
   if (letter.toLowerCase() == '{{ pokename[0].lower() }}') {
-    alert("ok, c'etait {{ pokename }}");
-    r.innerText = "OK!";
+    r.innerHTML = "Bravo, c'etait <span class='gameA_pokemon_name'>{{ pokename }}</span>!";
+    //show the next button
+    document.getElementById('suivant').style.display = "block";
+
+    //highlight
+    card.children[0].style.color = 'goldenrod';
   }
-  else {
-    
+  else {    
     r.innerText = "Non, essaye encore...";
+    //greyout
+    card.children[0].style.color = 'grey';
   }
 
 }

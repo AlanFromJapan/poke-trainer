@@ -59,11 +59,15 @@ def gameApage():
     pokemon = Pokepoor.getPokemon(pokeid)
     name = pokemon.translations[myconfig['language']]
 
+
     cards = []
-    cards.append(Card(name[0])) 
-    cards.append(Card(chr(ord('A') -1 + random.randrange(1, 26))))
-    cards.append(Card(chr(ord('A') -1 + random.randrange(1, 26))))
-    cards.append(Card(chr(ord('A') -1 + random.randrange(1, 26))))
+    cards.append(name[0])
+    while len(cards) < myconfig["gameA cards"]:
+        l = chr(ord('A') -1 + random.randrange(1, 26))
+        if not l in cards:
+            cards.append(l)
+    
+    cards = [Card(x) for x in cards]
 
     #gotta love Python <3
     random.shuffle(cards)
