@@ -1,31 +1,38 @@
-<html>
-  <head>
-    <title>Poke-Trainer - Game</title>
-    <link rel="stylesheet" href="css/style.css" type="text/css" />
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-  </head>
-<body>
+{% extends 'master01.html' %}
 
-<table class="header">
-  <tr>
-    <td><a href="/">Home</a></td>
-    <td><a href="randomPokemon">Random Pokemon</a></td>
-  </tr>
-</table>
-<br/>
-<br/>
+{% block pagename %} L'initiale {% endblock %}
+
+{% block contents %} 
+
 <h1>Game - L'initiale du Pokemon</h1>
-<table>
-  <tr>
-    <td style="font-family: 'Courier New', Courier, monospace;">
-{% autoescape false %}
-  {{ pagecontent }}
-{% endautoescape %}  
-    </td>
-    <td>
-      <img src="{{logo}}" />
-    </td>
-  </tr>
-</table>
-</body>
+
+<div class="gameA_img"><img src="{{ pokemon.spriteURL_big }}" /></div>
+<div class="gameA_img"><span id="result"></span></div>
+
+<div class="gameA_list">
+  {% for card in cards %}
+  <div class="gameA_card" onClick="submitResponse('{{ card.letter }}')">
+    <div class="gameA_letter">{{ card.letter }}</div>
+  </div>
+  {% endfor %}
+</div>
+
+<script type="text/javascript">
+  //Shows the result of the choice
+function submitResponse(letter) {
+  var r = document.getElementById('result');
+  if (letter.toLowerCase() == '{{ pokename[0].lower() }}') {
+    alert("ok, c'etait {{ pokename }}");
+    r.innerText = "OK!";
+  }
+  else {
+    
+    r.innerText = "Non, essaye encore...";
+  }
+
+}
+
+</script>
+
+{{ dbg }}
+{% endblock %}

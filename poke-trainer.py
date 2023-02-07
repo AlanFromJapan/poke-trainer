@@ -36,6 +36,7 @@ def homepage():
     return render_template("home01.html", pagename="Home", logo= Pokepoor.getPokemon(random.randrange(1, myconfig["max pokemon id"])).spriteURL)
 
 
+
 @app.route('/randomPokemon')
 def randomPokemonPage():
     pokeid = random.randrange(1,myconfig["max pokemon id"])
@@ -45,6 +46,29 @@ def randomPokemonPage():
 
     return render_template("template01.html", pagename="Random!", pagecontent=desc.replace('\n', '\n<br/>'), logo= pokemon.spriteURL if pokemon.spriteURL_big == "" else pokemon.spriteURL_big)
 
+
+
+@app.route("/gameA")
+def gameApage():
+    class Card:
+        letter = "?"
+        def __init__(self, l) -> None:
+            self.letter = l
+
+    pokeid = random.randrange(1,myconfig["max pokemon id"])
+    pokemon = Pokepoor.getPokemon(pokeid)
+    name = pokemon.translations[myconfig['language']]
+
+    cards = []
+    cards.append(Card(name[0])) 
+    cards.append(Card(chr(ord('A') -1 + random.randrange(1, 26))))
+    cards.append(Card(chr(ord('A') -1 + random.randrange(1, 26))))
+    cards.append(Card(chr(ord('A') -1 + random.randrange(1, 26))))
+
+    #gotta love Python <3
+    random.shuffle(cards)
+    
+    return render_template("gameA.html", pagecontent="test test", cards=cards, pokemon=pokemon, pokename=name)
 
 
 

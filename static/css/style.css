@@ -55,187 +55,39 @@ table.header a:hover {
     text-shadow: 0 0 5px gold;
 }
 
+
 /*--------------------------------------------------------------------------------------------------------*/
-/* History match list */
-table.matchhistory {
+/* GameA : Initiale */
+/* Good doc about alignment https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Aligning_Items_in_a_Flex_Container */
+div.gameA_list {
+    display: inline-flex;
+    border: solid 5px red;
     width: 90%;
-    border-width: 0px;
-    background-color: #262626;
-} 
-table.matchhistory td.opponent{
-    font-weight: bold;
-    color:goldenrod;
-    font-size:larger;
-}
-table.matchhistory td.outcomeVictory{
-    color:limegreen;
-    width:100px;
-    font-weight: bold;
-}
-table.matchhistory td.outcomeDefeat{
-    color: crimson;
-    width:100px;
-    font-weight: bold;
-}
-table.matchhistory td.deckmana{
-    width:75px;
+    flex-direction: row;
+    justify-content: space-between;
+
     text-align: center;
 }
-table.matchhistory td.time{
-    color: dimgray;
-    text-align: right;
-    font-size: smaller;
-    width: 175px;
-}
-table.matchhistory td.matchduration{
-    color: dimgray;
-    text-align: right;
-}
-table.matchhistory td.deckname{
-    text-transform: capitalize;
-}
-table.matchhistory td.deckname::before{
-    content:"「";
-}
-table.matchhistory td.deckname::after{
-    content:"」";
-}
-table.matchhistory td.tile{
-    width:100px; 
-}
-table.matchhistory td.tile img{
-    /* real width as small image is 146px */
-    width:90px; 
-}
+div.gameA_card {
+    width: 15%;
+    height: 200px;
+    background-color: gainsboro;
+    border: solid 1px gold;
 
-div.matchhistoryheaderdiv{
-    text-align: center;
-    width: 500px;
-    margin:auto;
-
+    
 }
-table.matchhistoryheader{
-    width: 100%;
-    background-color: #262626;
-    border: gainsboro 5px solid;
-    text-align: center;
- 
-    border-radius: 3px;   
-}
-
-/*--------------------------------------------------------------------------------------------------------*/
-/* Decks stats */
-table.decksstats  {
-    /* border: solid 1px white; */
-
-    width:90%;
-    background-color: #262626;
-}
-table.decksstats td {
-    /* border: solid 1px red; */
-}
-table.decksstats .decktile {
-    width:100px;
-}
-table.decksstats .decktile img {
-    /* real width as small image is 146px */
-    width:90px;
-}
-table.decksstats td.deckname{
-    width:300px;
-}
-table.decksstats td.deckname .name{
-    font-weight: bold;
-    color:goldenrod;
-    font-size:larger;
-}
-table.decksstats td.deckname .id{
-    color: dimgray;
-    font-size: x-small;
-}
-table.decksstats .winnerdeck{    
-    color:limegreen;
-}
-
-div.deckstatsmanadiv{
-    text-align: center;
-    width: 300px;
-    margin:auto;
-
-}
-table.deckstatsmana{
-    width: 300px;
-    background-color: #262626;
-    border: gainsboro 5px solid;
-    text-align: center;
- 
-    border-radius: 3px;   
-}
-
-/*--------------------------------------------------------------------------------------------------------*/
-/* Home page */
-
-.homewelcome {
-    color: goldenrod;
-    font-weight:bolder;
-    font-size:x-large;
-}
-.generalstats {
-    font-style: italic;    
-    color: gainsboro;
-    margin-left: 30px;
-}
-.generalstats::before {
-    content:" ❖ ";
-}
-.generalstatsBG {
-    background-color: #262626;
-    width: 90%;
-    margin-left: 15px;
-    background-image: url("/images/Analysis-PNG-Clipart.png");
-    background-position: right bottom;
-    background-repeat: no-repeat;
-    background-size: 100px;
-}
-.generalstatsheader {    
-    color: goldenrod;
-    font-weight:bolder;
-    font-size: large;
-    margin-left: 15px;
-}
-span.generalstatsHighlight{
-    color: darkgoldenrod;
-    font-weight:bold;
-}
-div.logobig {
-    text-align:center;
-    font-size: xx-small;
-}
-
-
-/*--------------------------------------------------------------------------------------------------------*/
-/* Settings */
-div.settingsResponse {
-    width: 100%;
-    text-align: center;
-}
-table.settingsTable {
-    /* border: solid 1px white; */
-
-    width:90%;
-    background-color: #262626;
-}
-.settingsButton {
-    width: 200px;
-    vertical-align: top;
-}
-.settingsButton button{
-    width: 200px;
-    height: 30px;
-}
-td.settingsTitle {
-    background-color: darkgray;
+div.gameA_letter {
     color: black;
-    font-weight: bold;
+    font-size: 56px;
+    text-align: center;
+    vertical-align: middle;
+    border: solid 1px greenyellow;
+    
+    transform: translateY(50%);
+    margin: 0px;
 }
 
+.gameA_img {
+    width:100%;
+    text-align: center;
+}

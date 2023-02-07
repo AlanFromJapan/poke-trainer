@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>Poke-Trainer - {% block pagename %} {% endblock %}</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  </head>
+<body>
+
+<table class="header">
+  <tr>
+    <td><a href="/">Home</a></td>
+    <td><a href="randomPokemon">Random Pokemon</a></td>
+    <td><a href="gameA">Game: Initiale!</a></td>
+  </tr>
+</table>
+<br/>
+<br/>
+
+{% block contents %} {% endblock %}
+
+</body>
