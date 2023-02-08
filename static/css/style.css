@@ -100,3 +100,18 @@ div.gameA_letter {
     font-size: larger;
     color: goldenrod;
 }
+.gameA_score {
+    border: 2px double goldenrod;
+    width: 100px;
+    height: 150px;
+    color: goldenrod;
+    background-color: MidnightBlue;
+    text-align: center;
+    font-weight: bold;
+    position: fixed;
+    right: 5%;
+}
+.gameA_score_val {
+    font-size: 300%;
+    font-weight: bolder;
+}

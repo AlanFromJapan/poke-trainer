@@ -10,6 +10,7 @@ import random
 #import pokebase
 #use my poor man reimplementation with cache
 from poorman_pokeapi_client import Pokepoor
+import poorman_textutils
 from config import myconfig
 
 
@@ -17,6 +18,7 @@ from config import myconfig
 ## Flask vars
 #
 app = Flask(__name__, static_url_path='')
+app.secret_key = myconfig["session secret key"]
 
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'ico'])
 
@@ -71,8 +73,10 @@ def gameApage():
 
     #gotta love Python <3
     random.shuffle(cards)
+
+    score = int(request.args.get('lastscore', default="-1")) + 1   
     
-    return render_template("gameA.html", pagecontent="test test", cards=cards, pokemon=pokemon, pokename=name)
+    return render_template("gameA.html", pagecontent="test test", cards=cards, pokemon=pokemon, pokename=name, score=score)
 
 
 
