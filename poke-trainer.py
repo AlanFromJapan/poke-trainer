@@ -31,6 +31,25 @@ def init():
 
 
 ########################################################################################
+## Non-web / shared
+#
+
+#returns a letter in a "language" so ja => katakana, ko => hangul, the rest gets A-Z
+def getRandomLetter(lang):
+    if lang == "ja":
+        #https://en.wikipedia.org/wiki/Katakana_(Unicode_block)
+        #start at 0x30A0 (=12448)
+        return chr(12448 -1 + random.randrange(1, 80))
+    #if lang == "ko":
+        #https://en.wikipedia.org/wiki/Hangul_Jamo_(Unicode_block)
+        #start at 0x1100 (=4352)
+        #TODO spli in 3 and use the composable ones only (green background)
+    
+    #default case: A-Z
+    return chr(ord('A') -1 + random.randrange(1, 26))
+
+
+########################################################################################
 ## Web related functions
 #
 @app.route('/')
@@ -48,8 +67,9 @@ def randomPokemonPage():
 
     return render_template("template01.html", pagename="Random!", pagecontent=desc.replace('\n', '\n<br/>'), logo= pokemon.spriteURL if pokemon.spriteURL_big == "" else pokemon.spriteURL_big)
 
-
-
+    
+#-----------------------------------------------------------------------
+#GAME A : find the initiale/first letter of a Pokemon!
 @app.route("/gameA")
 def gameApage():
     class Card:
@@ -65,7 +85,7 @@ def gameApage():
     cards = []
     cards.append(name[0])
     while len(cards) < myconfig["gameA cards"]:
-        l = chr(ord('A') -1 + random.randrange(1, 26))
+        l = getRandomLetter(myconfig['language'])
         if not l in cards:
             cards.append(l)
     
@@ -79,6 +99,13 @@ def gameApage():
     return render_template("gameA.html", pagecontent="test test", cards=cards, pokemon=pokemon, pokename=name, score=score)
 
 
+#-----------------------------------------------------------------------
+#REST API to change the language
+@app.route("/language/<lang>", methods=['PUT'])
+def setLanguage(lang):
+    print(f"Language change callback: {myconfig['language']} => {lang}.")
+    myconfig['language'] = lang
+    return "OK"
 
 ########################################################################################
 ## Main entry point

@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="css/style.css" type="text/css" />
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <script type="text/javascript" src="/js/utils.js"></script>
   </head>
 <body>
 
@@ -12,6 +13,11 @@
     <td><a href="/">Home</a></td>
     <td><a href="randomPokemon">Random Pokemon</a></td>
     <td><a href="gameA">Game: Initiale!</a></td>
+    <td>
+      <button type="button" onClick="switchLanguage('fr');">Francais</button>
+      <button type="button" onClick="switchLanguage('ja');">Japonais</button>
+
+    </td>
   </tr>
 </table>
 <br/>
