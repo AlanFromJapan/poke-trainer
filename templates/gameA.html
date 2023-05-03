@@ -7,7 +7,12 @@
 <h1>Game - L'initiale du Pokemon</h1>
 <div class="gameA_score"><span>Score</span><br/><span class="gameA_score_val">{{ score }}</span></div>
 <div class="gameA_img"><img src="{{ pokemon.spriteURL_big }}" /></div>
-<div class="gameA_result"><span id="result"></span> <a id="suivant" href='{{url_for("gameApage")}}?lastid={{ pokemon.id }}&lastscore={{score}}' style="display:none;">Suivant...</a></div>
+<div class="gameA_result">
+  <span id="result"></span> <br/>
+  <br/>
+  <div id="suivant" style="display:none;"><a class="next" href='{{url_for("gameApage")}}?lastid={{ pokemon.id }}&lastscore={{score}}' >Suivant...</a></div><br/>
+  <br/>
+</div>
 
 <div class="gameA_list">
   {% for card in cards %}

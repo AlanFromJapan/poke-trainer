@@ -28,6 +28,17 @@ a:hover {
     text-decoration: underline;
 }
 
+a.next:before{
+    content:"🔥 "
+}
+a.next:after{
+    content:" 🔥"
+}
+a.next{
+    padding: 20px;
+    background-color:seagreen;
+    text-align: center;
+}
 /*--------------------------------------------------------------------------------------------------------*/
 /* Found the glow effect here https://www.proglobalbusinesssolutions.com/css-hover-effects/ */
 table.header a {
