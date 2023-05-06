@@ -70,7 +70,7 @@ table.header a:hover {
 /*--------------------------------------------------------------------------------------------------------*/
 /* GameA : Initiale */
 /* Good doc about alignment https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Aligning_Items_in_a_Flex_Container */
-div.gameA_list {
+div.game_list {
     display: inline-flex;
     width: 90%;
     flex-direction: row;
@@ -83,10 +83,10 @@ div.gameA_card {
     width: 15%;
     height: 200px;
     background-color: gainsboro;
-
+    cursor: pointer;
     
 }
-div.gameA_letter {
+div.gameA_card > div.letter {
     color: black;
     font-size: 56px;
     font-weight: bold;
@@ -97,21 +97,21 @@ div.gameA_letter {
     margin: 0px;
 }
 
-.gameA_img {
+.game_img {
     width:100%;
     text-align: center;
 }
-.gameA_result  {
+.game_result  {
     width:100%;
     text-align: center;
     font-size: larger;
 }
-.gameA_pokemon_name  {
+.game_pokemon_name  {
     font-weight: bolder;
     font-size: larger;
     color: goldenrod;
 }
-.gameA_score {
+.game_score {
     border: 2px double goldenrod;
     width: 100px;
     height: 150px;
@@ -122,7 +122,36 @@ div.gameA_letter {
     position: fixed;
     right: 5%;
 }
-.gameA_score_val {
+.game_score_val {
     font-size: 300%;
     font-weight: bolder;
+}
+
+/*--------------------------------------------------------------------------------------------------------*/
+/* GameB : Pendu */
+div.pendu_list {
+    display: inline-flex;
+    width: 50%;
+    flex-direction: row;
+    justify-content: space-between;
+
+    text-align: center;
+}
+div.pendu_card {
+    width: 15%;
+    min-width: 30px;
+    max-width: 50px;
+    height: 50px;
+    background-color: dimgray;
+    cursor: not-allowed;
+    
+}
+div.pendu_card > div.letter {
+    color: black;
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    color:whitesmoke;
+    margin: 0px;
 }

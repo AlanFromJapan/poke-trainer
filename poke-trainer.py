@@ -99,6 +99,19 @@ def gameApage():
     return render_template("gameA.html", pagecontent="test test", cards=cards, pokemon=pokemon, pokename=name, score=score)
 
 
+    
+#-----------------------------------------------------------------------
+#GAME B : pendu type of game
+@app.route("/gameB")
+def gameBpage():
+    score = 0
+    pokeid = random.randrange(1,myconfig["max pokemon id"])
+    pokemon = Pokepoor.getPokemon(pokeid)
+    name = pokemon.translations[myconfig['language']]
+
+    return render_template("gameB.html", pagecontent="test test", score=score, pokemon=pokemon, pokename=name)
+
+
 #-----------------------------------------------------------------------
 #REST API to change the language
 @app.route("/language/<lang>", methods=['PUT'])

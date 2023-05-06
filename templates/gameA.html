@@ -5,19 +5,19 @@
 {% block contents %} 
 
 <h1>Game - L'initiale du Pokemon</h1>
-<div class="gameA_score"><span>Score</span><br/><span class="gameA_score_val">{{ score }}</span></div>
-<div class="gameA_img"><img src="{{ pokemon.spriteURL_big }}" /></div>
-<div class="gameA_result">
+<div class="game_score"><span>Score</span><br/><span class="game_score_val">{{ score }}</span></div>
+<div class="game_img"><img src="{{ pokemon.spriteURL_big }}" /></div>
+<div class="game_result">
   <span id="result"></span> <br/>
   <br/>
   <div id="suivant" style="display:none;"><a class="next" href='{{url_for("gameApage")}}?lastid={{ pokemon.id }}&lastscore={{score}}' >Suivant...</a></div><br/>
   <br/>
 </div>
 
-<div class="gameA_list">
+<div class="game_list">
   {% for card in cards %}
   <div class="gameA_card" onClick="submitResponse(this, '{{ card.letter }}');">
-    <div class="gameA_letter">{{ card.letter }}</div>
+    <div class="letter">{{ card.letter }}</div>
   </div>
   {% endfor %}
 </div>
@@ -29,7 +29,7 @@
 function submitResponse(card, letter) {
   var r = document.getElementById('result');
   if (letter.toLowerCase() == '{{ pokename[0].lower() }}') {
-    r.innerHTML = "Bravo, c'etait <span class='gameA_pokemon_name'>{{ pokename }}</span>!";
+    r.innerHTML = "Bravo, c'etait <span class='game_pokemon_name'>{{ pokename }}</span>!";
     //show the next button
     document.getElementById('suivant').style.display = "block";
 

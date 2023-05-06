@@ -1,0 +1,88 @@
+{% extends 'master01.html' %}
+
+{% block pagename %} Le Pendu {% endblock %}
+
+{% block contents %} 
+
+<h1>Game - Pokemon pendu</h1>
+<div class="game_score"><span>Score</span><br/><span class="game_score_val">{{ score }}</span></div>
+<div class="game_img"><img src="{{ pokemon.spriteURL_big }}" /></div>
+<div class="game_result">
+  <span id="result"></span> <br/>
+  <br/>
+  <div id="suivant" style="display:none;"><a class="next" href='{{url_for("gameBpage")}}?lastid={{ pokemon.id }}&lastscore={{score}}' >Suivant...</a></div><br/>
+  <br/>
+</div>
+
+<!-- LOL CSS had to search "how to center a div"-->
+<div style="text-align: center;">
+  <div id="output" class="pendu_list">
+    {% for l in pokename %}
+    <div class="pendu_card">
+      <div class="letter" name="letter" my-letter="{{ l }}">_</div>
+    </div>    
+    {% endfor %}
+  </div>
+</div>
+
+<div class="pendu_input">
+  <input type="text" name="text" id="text" onkeyup="textChanged();" /> 
+</div>
+
+
+
+
+
+
+<script type="text/javascript">
+
+//Handles when text is input in the textbox 
+function textChanged() {
+  var t = document.getElementById("text");
+  var candidate = t.value.toLowerCase();
+
+  var letterz = document.getElementsByName("letter");
+  for (const l of letterz){
+    if (l.getAttribute("my-letter").toLowerCase() == candidate) {
+      l.innerHTML = candidate.toUpperCase();
+    }
+  }
+
+  t.value = "";
+
+  //check if won
+  checkWin();
+}
+
+//Checks if user won
+function checkWin() {
+  var letterz = document.getElementsByName("letter");
+  var allFound = true;
+  
+  for (const l of letterz){
+    allFound = allFound && (l.getAttribute("my-letter").toLowerCase() == l.innerHTML.toLowerCase()) ;
+  }  
+
+  if (allFound == true) {
+    var r = document.getElementById('result');
+    r.innerHTML = "Bravo, c'etait <span class='game_pokemon_name'>{{ pokename }}</span>!";
+    //show the next button
+    document.getElementById('suivant').style.display = "block";
+
+    //highlight
+    card.children[0].style.color = 'forestgreen';
+  }
+}
+
+//Do on first load
+function onFirstLoad(){
+  var t = document.getElementById("text");
+  t.focus();
+}
+
+onFirstLoad();
+
+</script>
+
+{{ dbg }}
+{% endblock %}
