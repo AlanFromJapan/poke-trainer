@@ -25,7 +25,14 @@ if __name__ == '__main__':
 "raichu",
 "psykokwak",
 "akwakwak",
-"taupiqueur"]
+"taupiqueur",
+"Électrode",
+"Aéromite",
+"Magnéton"]
 
     for test in tests:
         print(f"{test} -> [{firstSyllabish(test)}]")
+
+    print("-----------------Text removing accents----------------")
+    for test in tests:
+        print(f"{test} -> [{removeAccents(test)}]")
