@@ -108,10 +108,13 @@ def gameBpage():
     pokeid = random.randrange(1,myconfig["max pokemon id"])
     pokemon = Pokepoor.getPokemon(pokeid)
     name = pokemon.translations[myconfig['language']]
-    
+
     if myconfig['language'] == "fr":
         #remove nasty accents
         name = poorman_textutils.removeAccents(name)
+
+    
+    score = int(request.args.get('lastscore', default="-1")) + 1   
 
     return render_template("gameB.html", pagecontent="test test", score=score, pokemon=pokemon, pokename=name)
 
