@@ -50,6 +50,12 @@ var step = 0;
 //Handles when text is input in the textbox 
 function textChanged() {
   var t = document.getElementById("text");
+
+  if (step > 6){
+    t.value = "";
+    return;
+  }
+
   var candidate = t.value.toLowerCase();
   var found = false;
 
@@ -126,7 +132,16 @@ function penduDrawUpdate(){
         ctx.moveTo(200, 50+20*2 + 80);
         ctx.lineTo(200 + 40, 50+20*2 + 80 + 40);
         break;
+      default:
+        ctx.fillStyle = "crimson";
+        ctx.fillRect(0,0,300,300);
+        ctx.fill();
+        ctx.fillStyle = "white";
 
+        ctx.font = "48px serif";
+        ctx.fillText("Perdu!", 50, 150);
+
+        break;
     }
 
     ctx.stroke();
