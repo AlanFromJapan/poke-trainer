@@ -6,13 +6,23 @@
 
 <h1>Game - Pokemon pendu</h1>
 <div class="game_score"><span>Score</span><br/><span class="game_score_val">{{ score }}</span></div>
-<div class="game_img"><img src="{{ pokemon.spriteURL_big }}" /></div>
-<div class="game_result">
-  <span id="result"></span> <br/>
-  <br/>
-  <div id="suivant" style="display:none;"><a class="next" href='{{url_for("gameBpage")}}?lastid={{ pokemon.id }}&lastscore={{score}}' >Suivant...</a></div><br/>
-  <br/>
-</div>
+<table class="halfhalf">
+  <tr>
+    <td><canvas id="pendu" width="300" height="300"></canvas></td>
+    <td><div class="game_img"><img src="{{ pokemon.spriteURL_big }}" /></div></td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <div class="game_result">
+        <span id="result"></span> <br/>
+        <br/>
+        <div id="suivant" style="display:none;"><a class="next" href='{{url_for("gameBpage")}}?lastid={{ pokemon.id }}&lastscore={{score}}' >Suivant...</a></div><br/>
+        <br/>
+      </div>
+    </td>
+  </tr>
+</table>
+
 
 <!-- LOL CSS had to search "how to center a div"-->
 <div style="text-align: center;">
@@ -35,20 +45,29 @@
 
 
 <script type="text/javascript">
+var step = 0;
 
 //Handles when text is input in the textbox 
 function textChanged() {
   var t = document.getElementById("text");
   var candidate = t.value.toLowerCase();
+  var found = false;
 
   var letterz = document.getElementsByName("letter");
   for (const l of letterz){
     if (l.getAttribute("my-letter").toLowerCase() == candidate) {
       l.innerHTML = candidate.toUpperCase();
+      found=true;
     }
   }
 
   t.value = "";
+
+  //update pendu?
+  if (!found){
+    step ++;
+    penduDrawUpdate();
+  }
 
   //check if won
   checkWin();
@@ -74,10 +93,85 @@ function checkWin() {
   }
 }
 
+//update hangman
+function penduDrawUpdate(){
+  const canvas = document.getElementById("pendu");
+  if (canvas.getContext) {
+    const ctx = canvas.getContext("2d");
+
+    ctx.beginPath();
+
+    switch(step){
+      case 1:
+        ctx.moveTo(200, 50);
+        ctx.arc(200, 50 + 20, 20, 180, 360);
+        break;
+      case 2:
+        ctx.moveTo(200, 50+20*2);
+        ctx.lineTo(200, 50+20*2 + 80);
+        break;
+      case 3:
+        ctx.moveTo(200, 50+20*2 + 40);
+        ctx.lineTo(200 - 40, 50+20*2 );
+        break;
+      case 4:
+        ctx.moveTo(200, 50+20*2 + 40);
+        ctx.lineTo(200 + 40, 50+20*2 );
+        break;
+      case 5:
+        ctx.moveTo(200, 50+20*2 + 80);
+        ctx.lineTo(200 - 40, 50+20*2 + 80 + 40);
+        break;
+      case 6:
+        ctx.moveTo(200, 50+20*2 + 80);
+        ctx.lineTo(200 + 40, 50+20*2 + 80 + 40);
+        break;
+
+    }
+
+    ctx.stroke();
+  }
+}
+
+//draw the base of the hangman
+function penduDrawBase(){
+  const canvas = document.getElementById("pendu");
+  if (canvas.getContext) {
+    const ctx = canvas.getContext("2d");
+
+    ctx.strokeStyle = "white";
+    //ext border
+    //ctx.strokeRect(0,0, 300,300);
+
+    ctx.beginPath();
+    //floor
+    ctx.moveTo(0, 280);
+    ctx.lineTo(300, 280);
+
+    //v pole
+    ctx.moveTo(100, 280);
+    ctx.lineTo(100, 0);
+
+    //h pole
+    ctx.lineTo(200, 0);
+
+    //rope
+    ctx.lineTo(200, 50);
+
+    //supporter
+    ctx.moveTo(100, 30);
+    ctx.lineTo(130, 0);
+
+    ctx.stroke();
+  }  
+}
+
 //Do on first load
 function onFirstLoad(){
   var t = document.getElementById("text");
   t.focus();
+
+  penduDrawBase();
 }
 
 onFirstLoad();

@@ -155,3 +155,15 @@ div.pendu_card > div.letter {
     color:whitesmoke;
     margin: 0px;
 }
+
+table.halfhalf {
+    border: 0px;
+}
+table.halfhalf tr td {
+    width:50%;
+    text-align: center;
+}
+#pendu {
+    color: white;
+    background-color: darkslategrey;
+}
