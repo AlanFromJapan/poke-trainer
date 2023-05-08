@@ -172,3 +172,9 @@ div.pendu_input {
     background-color: darkgoldenrod;
     border: 1px solid white;
 }
+#pendu_failed{
+    color:slategrey;
+    text-decoration:line-through;
+    font-size: 24px;
+    font-weight: bold;
+}

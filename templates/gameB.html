@@ -23,6 +23,8 @@
         </table>
       </div>
 
+      <div id="pendu_failed"></div>
+
     </td>
     <td><div class="game_img"><img src="{{ pokemon.spriteURL_big }}" /></div></td>
   </tr>
@@ -69,7 +71,7 @@ function textChanged() {
     return;
   }
 
-  var candidate = t.value.toLowerCase();
+  var candidate = t.value.toLowerCase()[0];
   var found = false;
 
   var letterz = document.getElementsByName("letter");
@@ -84,6 +86,8 @@ function textChanged() {
 
   //update pendu?
   if (!found){
+    var f = document.getElementById("pendu_failed");
+    f.innerHTML = f.innerHTML  + candidate.toUpperCase() + " ";
     step ++;
     penduDrawUpdate();
   }
