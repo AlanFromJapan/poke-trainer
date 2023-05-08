@@ -122,6 +122,25 @@ def gameBpage():
     return render_template("gameB.html", pagecontent="test test", score=score, pokemon=pokemon, pokename=name)
 
 
+    
+#-----------------------------------------------------------------------
+#GAME C : "meli-melo" put the letters of the pokemon in the right order
+@app.route("/gameC")
+def gameCpage():
+    score = 0
+    pokeid = random.randrange(1,myconfig["max pokemon id"])
+    pokemon = Pokepoor.getPokemon(pokeid)
+    name = pokemon.translations[myconfig['language']]
+
+    if myconfig['language'] == "fr":
+        #remove nasty accents
+        name = poorman_textutils.removeAccents(name)
+
+    
+    score = int(request.args.get('lastscore', default="-1")) + 1   
+
+    return render_template("gameC.html", pagecontent="test test", score=score, pokemon=pokemon, pokename=name)
+
 #-----------------------------------------------------------------------
 #REST API to change the language
 @app.route("/language/<lang>", methods=['PUT'])

@@ -68,6 +68,28 @@ table.header a:hover {
 
 
 /*--------------------------------------------------------------------------------------------------------*/
+/* Homepage */
+
+span.homewelcome{
+    font-weight: bold;
+    font-size: xx-large;
+    color: goldenrod;
+}
+table.gameslist tr td{
+    border: solid 2px goldenrod;
+    height: 200px;
+    width: 200px;
+    vertical-align: top;
+    padding: 10px;
+}
+
+.gamename {
+    font-weight: bold;
+    font-size: larger;
+    color: goldenrod;
+}
+
+/*--------------------------------------------------------------------------------------------------------*/
 /* GameA : Initiale */
 /* Good doc about alignment https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Aligning_Items_in_a_Flex_Container */
 div.game_list {
