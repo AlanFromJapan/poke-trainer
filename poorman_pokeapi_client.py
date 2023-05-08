@@ -3,6 +3,8 @@ import json
 #for the caching decorator
 from functools import lru_cache
 import datetime
+import config
+
 
 URL_MAIN="https://pokeapi.co/api/v2/pokemon/<ID>/"
 URL_SPECIES="https://pokeapi.co/api/v2/pokemon-species/<ID>"
@@ -47,7 +49,7 @@ Translations:
         #######
         ## 1- get basics
         #
-        resp = requests.get(URL_MAIN.replace("<ID>", str(id)))
+        resp = requests.get(URL_MAIN.replace("<ID>", str(id)), verify=config.myconfig["SSL_CHECK"])
 
         j = json.loads(resp.text)
 
@@ -62,7 +64,7 @@ Translations:
         #######
         ## 2- get name translations
         #
-        resp = requests.get(URL_SPECIES.replace("<ID>", str(id)))
+        resp = requests.get(URL_SPECIES.replace("<ID>", str(id)), verify=config.myconfig["SSL_CHECK"])
 
         j = json.loads(resp.text)
     
