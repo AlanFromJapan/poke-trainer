@@ -6,9 +6,24 @@
 
 <h1>Game - Pokemon pendu</h1>
 <div class="game_score"><span>Score</span><br/><span class="game_score_val">{{ score }}</span></div>
+
 <table class="halfhalf">
   <tr>
-    <td><canvas id="pendu" width="300" height="300"></canvas></td>
+    <td><canvas id="pendu" width="300" height="300"></canvas><br/>
+      <br/>
+    
+      <div class="pendu_input">
+        <table>
+          <tr>
+            <td><input type="text" name="text" id="text" onkeyup="textChanged();" /></td>
+            <td>👈 click here to input text<br/>
+            👈 cliquez la pour rentrer du texte<br/>
+          👈ここで字を入力してください</td>
+          </tr>
+        </table>
+      </div>
+
+    </td>
     <td><div class="game_img"><img src="{{ pokemon.spriteURL_big }}" /></div></td>
   </tr>
   <tr>
@@ -35,9 +50,7 @@
   </div>
 </div>
 
-<div class="pendu_input">
-  <input type="text" name="text" id="text" onkeyup="textChanged();" /> 
-</div>
+
 
 
 

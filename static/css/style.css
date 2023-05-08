@@ -167,3 +167,8 @@ table.halfhalf tr td {
     color: white;
     background-color: darkslategrey;
 }
+
+div.pendu_input {
+    background-color: darkgoldenrod;
+    border: 1px solid white;
+}

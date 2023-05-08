@@ -52,12 +52,15 @@ def getRandomLetter(lang):
 ########################################################################################
 ## Web related functions
 #
+#-----------------------------------------------------------------------
+#Landing page, not much to see here but at least if API connectivity doesn't you will know immediately
 @app.route('/')
 def homepage():
     return render_template("home01.html", pagename="Home", logo= Pokepoor.getPokemon(random.randrange(1, myconfig["max pokemon id"])).spriteURL)
 
 
-
+#-----------------------------------------------------------------------
+#Get a random pokemon, good for debugging
 @app.route('/randomPokemon')
 def randomPokemonPage():
     pokeid = random.randrange(1,myconfig["max pokemon id"])
