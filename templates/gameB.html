@@ -153,10 +153,14 @@ function penduDrawUpdate(){
         ctx.fillStyle = "crimson";
         ctx.fillRect(0,0,300,300);
         ctx.fill();
-        ctx.fillStyle = "white";
 
+        ctx.fillStyle = "white";
         ctx.font = "48px serif";
         ctx.fillText("Perdu!", 50, 150);
+        ctx.fillStyle = "lightyellow";
+        ctx.font = "24px sans-serif";
+        ctx.fillText("C'etait '{{ pokename.upper() }}'", 5, 200);
+
 
         break;
     }
