@@ -41,6 +41,12 @@ Translations:
 
         return desc
 
+    def __hash__(self) -> int:
+        return int(self.id)
+    
+    def __eq__(self, __value: object) -> bool:
+        return self.id == __value.id
+    
 
     #there's 150 legacy pokemon so should cover them all... LRU part is not used though (shrug)
     @lru_cache(maxsize=180)
@@ -92,4 +98,8 @@ if __name__ == '__main__':
     end = datetime.datetime.now()
     print(f"Call 2 AGAIN: {end -start}")
 
+    if config.myconfig["Show stats"]:
+        #DBG check the cache
+        print(Pokepoor.getPokemon.cache_info())
+        
     print(p)
