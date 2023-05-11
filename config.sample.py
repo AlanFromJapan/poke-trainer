@@ -9,6 +9,9 @@ myconfig = {
     #Normally this should be True, but in case you use this where someone misconfigured the CA check settings then make this False.
     "SSL_CHECK" : True,
 
+    #if true, will print some stats about the cache etc.
+    "Show stats" : False,
+
     "BehindProxy" : False
 
 }

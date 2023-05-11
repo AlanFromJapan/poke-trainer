@@ -76,6 +76,10 @@ def randomPokemonPage():
     
     desc= str(pokemon)
 
+    if myconfig["Show stats"]:
+        #DBG check the cache
+        print(Pokepoor.getPokemon.cache_info())
+
     return render_template("template01.html", pagename="Random!", pagecontent=desc.replace('\n', '\n<br/>'), logo= pokemon.spriteURL if pokemon.spriteURL_big == "" else pokemon.spriteURL_big)
 
     
