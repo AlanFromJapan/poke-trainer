@@ -32,7 +32,7 @@ function switchLanguage(l){
     //         d.innerHTML = this.responseText.replace('\n', '<br/>');
     //         }
     // };
-    xhttp.open("PUT", "/language/" + l, true);
+    xhttp.open("PUT", "language/" + l, true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
 }
