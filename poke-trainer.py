@@ -17,6 +17,9 @@ import poorman_textutils
 from config import myconfig
 
 
+#Blueprints
+from api.api import api_bp
+
 ########################################################################################
 ## Flask vars
 #
@@ -111,7 +114,7 @@ def gameApage():
 
     score = int(request.args.get('lastscore', default="-1")) + 1   
     
-    return render_template("gameA.html", pagecontent="test test", cards=cards, pokemon=pokemon, pokename=name, score=score)
+    return render_template("gameA.html", pagecontent="test test", cards=cards, letterstyle= myconfig['letterstyle'], lettercase= myconfig['lettercase'], pokemon=pokemon, pokename=name, score=score)
 
 
     
@@ -155,11 +158,7 @@ def gameCpage():
 
 #-----------------------------------------------------------------------
 #REST API to change the language
-@app.route("/language/<lang>", methods=['PUT'])
-def setLanguage(lang):
-    print(f"Language change callback: {myconfig['language']} => {lang}.")
-    myconfig['language'] = lang
-    return "OK"
+app.register_blueprint(api_bp, url_prefix='/api')
 
 ########################################################################################
 ## Main entry point

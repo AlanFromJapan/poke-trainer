@@ -17,7 +17,7 @@
 <div class="game_list">
   {% for card in cards %}
   <div class="gameA_card" onClick="submitResponse(this, '{{ card.letter }}');">
-    <div class="letter">{{ card.letter }}</div>
+    <div class="letter {{ letterstyle }} {{lettercase}}">{{ card.letter }}</div>
   </div>
   {% endfor %}
 </div>

@@ -12,6 +12,11 @@ myconfig = {
     #if true, will print some stats about the cache etc.
     "Show stats" : False,
 
-    "BehindProxy" : False
+    "BehindProxy" : False,
 
+    #Block, Cursive or mix
+    "letterstyle" : "block",
+
+    #uppercase or lowercase
+    "lettercase" : "lowercase"
 }

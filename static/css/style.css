@@ -13,9 +13,19 @@
 }
 
 *.cursive {
-    font-family: "xmas";
+    font-family: "janda";
+    text-transform: lowercase;
+}
+*.block {
+    
 }
 
+*.lowercase {
+    text-transform: lowercase;
+}
+*.uppercase {
+    text-transform: uppercase;    
+}
 /*--------------------------------------------------------------------------------------------------------*/
 
 body {
