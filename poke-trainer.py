@@ -1,26 +1,22 @@
-from flask import Flask, render_template, redirect, url_for, request, make_response, send_file
-import os, sys
-import logging
-from logging.handlers import RotatingFileHandler
-import re
-import werkzeug
 import random
+from logging.handlers import RotatingFileHandler
 
+from flask import (Flask, make_response, redirect, render_template, request,
+                   send_file, url_for)
 #running behind proxy?                                                                                            
 from werkzeug.middleware.proxy_fix import ProxyFix
 
+#Blueprints
+from api.api import api_bp
+from config import myconfig
+from game_initale.game_initiale import initiale_bp
+from game_melimelo.game_melimelo import melimelo_bp
+from game_pendu.game_pendu import pendu_bp
+from game_random.game_random import random_bp
 # NOT using pokebase in the end, the performances are so badm it takes 3-5 sec to get the object though calling the URL + parsing the json is < 250ms
 #import pokebase
 #use my poor man reimplementation with cache
 from poorman_pokeapi_client import Pokepoor
-import poorman_textutils
-from config import myconfig
-
-
-#Blueprints
-from api.api import api_bp
-from game_initale.game_initiale import initiale_bp
-from game_pendu.game_pendu import pendu_bp
 
 ########################################################################################
 ## Flask vars
@@ -55,19 +51,7 @@ def homepage():
 
 #-----------------------------------------------------------------------
 #Get a random pokemon, good for debugging
-@app.route('/randomPokemon')
-def randomPokemonPage():
-    pokeid = random.randrange(1,myconfig["max pokemon id"])
-    pokemon = Pokepoor.getPokemon(pokeid)
-    
-    desc= str(pokemon)
-
-    if myconfig["Show stats"]:
-        #DBG check the cache
-        print(Pokepoor.getPokemon.cache_info())
-
-    return render_template("template01.html", pagename="Random!", pagecontent=desc.replace('\n', '\n<br/>'), logo= pokemon.spriteURL if pokemon.spriteURL_big == "" else pokemon.spriteURL_big)
-
+app.register_blueprint(random_bp)
     
 #-----------------------------------------------------------------------
 #GAME A : find the initiale/first letter of a Pokemon!
@@ -79,21 +63,7 @@ app.register_blueprint(pendu_bp)
     
 #-----------------------------------------------------------------------
 #GAME C : "meli-melo" put the letters of the pokemon in the right order
-@app.route("/gameC")
-def gameCpage():
-    score = 0
-    pokeid = random.randrange(1,myconfig["max pokemon id"])
-    pokemon = Pokepoor.getPokemon(pokeid)
-    name = pokemon.translations[myconfig['language']]
-
-    if myconfig['language'] == "fr":
-        #remove nasty accents
-        name = poorman_textutils.removeAccents(name)
-
-    
-    score = int(request.args.get('lastscore', default="-1")) + 1   
-
-    return render_template("gameC.html", pagecontent="test test", score=score, pokemon=pokemon, pokename=name)
+app.register_blueprint(melimelo_bp)
 
 #-----------------------------------------------------------------------
 #REST API to change the language
