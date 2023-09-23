@@ -60,7 +60,7 @@ def getRandomLetter(lang):
 #Landing page, not much to see here but at least if API connectivity doesn't you will know immediately
 @app.route('/')
 def got2home():
-    return redirect("/popo/home")
+    return redirect("/home")
 
 @app.route('/home')
 def homepage():
