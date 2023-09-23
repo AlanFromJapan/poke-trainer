@@ -20,6 +20,7 @@ from config import myconfig
 #Blueprints
 from api.api import api_bp
 from game_initale.game_initiale import initiale_bp
+from game_pendu.game_pendu import pendu_bp
 
 ########################################################################################
 ## Flask vars
@@ -70,28 +71,11 @@ def randomPokemonPage():
     
 #-----------------------------------------------------------------------
 #GAME A : find the initiale/first letter of a Pokemon!
-
 app.register_blueprint(initiale_bp)
     
 #-----------------------------------------------------------------------
 #GAME B : pendu type of game
-@app.route("/gameB")
-def gameBpage():
-    score = 0
-    pokeid = random.randrange(1,myconfig["max pokemon id"])
-    pokemon = Pokepoor.getPokemon(pokeid)
-    name = pokemon.translations[myconfig['language']]
-
-    if myconfig['language'] == "fr":
-        #remove nasty accents
-        name = poorman_textutils.removeAccents(name)
-
-    
-    score = int(request.args.get('lastscore', default="-1")) + 1   
-
-    return render_template("gameB.html", pagecontent="test test", score=score, pokemon=pokemon, pokename=name)
-
-
+app.register_blueprint(pendu_bp)
     
 #-----------------------------------------------------------------------
 #GAME C : "meli-melo" put the letters of the pokemon in the right order
