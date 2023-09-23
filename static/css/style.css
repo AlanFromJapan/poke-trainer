@@ -17,7 +17,7 @@
     text-transform: lowercase;
 }
 *.block {
-    
+    /* default is fine */
 }
 
 *.lowercase {

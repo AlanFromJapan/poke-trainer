@@ -19,6 +19,7 @@ from config import myconfig
 
 #Blueprints
 from api.api import api_bp
+from game_initale.game_initiale import initiale_bp
 
 ########################################################################################
 ## Flask vars
@@ -35,25 +36,6 @@ if myconfig["BehindProxy"]:
 
 
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'ico'])
-
-
-########################################################################################
-## Non-web / shared
-#
-
-#returns a letter in a "language" so ja => katakana, ko => hangul, the rest gets A-Z
-def getRandomLetter(lang):
-    if lang == "ja":
-        #https://en.wikipedia.org/wiki/Katakana_(Unicode_block)
-        #start at 0x30A0 (=12448)
-        return chr(12448 -1 + random.randrange(1, 80))
-    #if lang == "ko":
-        #https://en.wikipedia.org/wiki/Hangul_Jamo_(Unicode_block)
-        #start at 0x1100 (=4352)
-        #TODO spli in 3 and use the composable ones only (green background)
-    
-    #default case: A-Z
-    return chr(ord('A') -1 + random.randrange(1, 26))
 
 
 ########################################################################################
@@ -88,35 +70,8 @@ def randomPokemonPage():
     
 #-----------------------------------------------------------------------
 #GAME A : find the initiale/first letter of a Pokemon!
-@app.route("/gameA")
-def gameApage():
-    class Card:
-        letter = "?"
-        def __init__(self, l) -> None:
-            self.letter = l
 
-    pokeid = random.randrange(1,myconfig["max pokemon id"])
-    pokemon = Pokepoor.getPokemon(pokeid)
-    name = pokemon.translations[myconfig['language']]
-
-
-    cards = []
-    cards.append(name[0])
-    while len(cards) < myconfig["gameA cards"]:
-        l = getRandomLetter(myconfig['language'])
-        if not l in cards:
-            cards.append(l)
-    
-    cards = [Card(x) for x in cards]
-
-    #gotta love Python <3
-    random.shuffle(cards)
-
-    score = int(request.args.get('lastscore', default="-1")) + 1   
-    
-    return render_template("gameA.html", pagecontent="test test", cards=cards, letterstyle= myconfig['letterstyle'], lettercase= myconfig['lettercase'], pokemon=pokemon, pokename=name, score=score)
-
-
+app.register_blueprint(initiale_bp)
     
 #-----------------------------------------------------------------------
 #GAME B : pendu type of game
