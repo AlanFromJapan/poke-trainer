@@ -1,0 +1,1 @@
+From this page https://fr.wiktionary.org/w/index.php?title=Wiktionnaire:Liste_de_1750_mots_fran%C3%A7ais_les_plus_courants
