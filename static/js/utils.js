@@ -69,3 +69,19 @@ function switchLetterCase(l){
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
 }
+
+var lastAudio = null;
+
+function speech2text(key, text){
+    var url = "http://api.voicerss.org/?key=" + key + "&hl=fr-fr&c=MP3&v=Zola&f=16khz_16bit_mono&src=" + text;
+    const audioElement = new Audio(url);
+    audioElement.play();
+
+    lastAudio = audioElement;
+}
+
+function replayLatestAudio(){
+    if (lastAudio != null){
+        lastAudio.play();
+    }
+}

@@ -18,5 +18,8 @@ myconfig = {
     "letterstyle" : "block",
 
     #uppercase or lowercase
-    "lettercase" : "lowercase"
+    "lettercase" : "lowercase",
+
+    #VoiceRSS key for speech to text
+    "VoiceRSS key" : "your key here"
 }

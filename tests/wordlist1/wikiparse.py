@@ -14,7 +14,9 @@ with open("wikisource.txt", mode="r") as f:
     #l is a list of string tuples, we want the 2nd element of each tuple
     wordlist = [x[1] for x in l]
 
-print (wordlist[random.randint(0, len(wordlist)-1)])
+
+def get_random_word():
+    return wordlist[random.randint(0, len(wordlist)-1)]
 
 
 #now to get the image

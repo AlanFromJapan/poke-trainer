@@ -15,6 +15,7 @@
     <td><a href="gameA">Jeu: Initiale</a></td>
     <td><a href="gameB">Jeu: Pendu</a></td>
     <td><a href="gameC">Jeu: Meli-melo</a></td>
+    <td><a href="listening">Jeu: Ecoute</a></td>
     <td>
       <button type="button" onClick="switchLanguage('fr');">Francais</button>
       <button type="button" onClick="switchLanguage('ja');">Japonais</button><br/>
@@ -35,4 +36,12 @@
 
 {% block contents %} {% endblock %}
 
+<script lang="javascript">
+  //Some JS to execute after the page is loaded?
+  {% autoescape false %}
+    {{ jscontent }}
+  {% endautoescape %}  
+  
+</script>
+  
 </body>

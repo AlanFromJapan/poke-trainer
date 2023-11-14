@@ -1,0 +1,218 @@
+{% extends 'master01.html' %}
+
+{% block pagename %}Jeu d'ecoute{% endblock %}
+
+{% block contents %} 
+
+<h1>Game - Jeu d'ecoute</h1>
+<div class="game_score"><span>Score</span><br/><span class="game_score_val">{{ score }}</span></div>
+
+<table class="halfhalf">
+  <tr>
+    <td><canvas id="pendu" width="300" height="300"></canvas><br/>
+      <br/>
+    
+      <div class="pendu_input">
+        <table>
+          <tr>
+            <td><input type="text" name="text" id="text" onkeyup="textChanged();" /></td>
+            <td>👈 click here to input text<br/>
+            👈 cliquez la pour rentrer du texte<br/>
+          👈ここで字を入力してください</td>
+          </tr>
+        </table>
+      </div>
+
+      <div id="pendu_failed"></div>
+
+    </td>
+    <td><button id="replay" onclick="javascript:replayLatestAudio()">Replay!</button></td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <div class="game_result">
+        <span id="result"></span> <br/>
+        <br/>
+        <div id="suivant" style="display:none;"><a class="next" href='listening?lastscore={{score}}' >Suivant...</a></div><br/>
+        <br/>
+      </div>
+    </td>
+  </tr>
+</table>
+
+
+<!-- LOL CSS had to search "how to center a div"-->
+<div style="text-align: center;">
+  <div id="output" class="pendu_list">
+    {% for l in pokename %}
+    <div class="pendu_card">
+      <div class="letter" name="letter" my-letter="{{ l }}">_</div>
+    </div>    
+    {% endfor %}
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var step = 0;
+
+//Handles when text is input in the textbox 
+function textChanged() {
+  var t = document.getElementById("text");
+
+  if (step > 6){
+    t.value = "";
+    return;
+  }
+
+  var candidate = t.value.toLowerCase()[0];
+  var found = false;
+
+  var letterz = document.getElementsByName("letter");
+  for (const l of letterz){
+    if (l.getAttribute("my-letter").toLowerCase() == candidate) {
+      l.innerHTML = candidate.toUpperCase();
+      found=true;
+    }
+  }
+
+  t.value = "";
+
+  //update pendu?
+  if (!found){
+    var f = document.getElementById("pendu_failed");
+    f.innerHTML = f.innerHTML  + candidate.toUpperCase() + " ";
+    step ++;
+    penduDrawUpdate();
+  }
+
+  //check if won
+  checkWin();
+}
+
+//Checks if user won
+function checkWin() {
+  var letterz = document.getElementsByName("letter");
+  var allFound = true;
+  
+  for (const l of letterz){
+    allFound = allFound && (l.getAttribute("my-letter").toLowerCase() == l.innerHTML.toLowerCase()) ;
+  }  
+
+  if (allFound == true) {
+    var r = document.getElementById('result');
+    r.innerHTML = "Bravo, c'etait <span class='game_pokemon_name'>{{ pokename }}</span>!";
+    //show the next button
+    document.getElementById('suivant').style.display = "block";
+
+    //highlight
+    card.children[0].style.color = 'forestgreen';
+  }
+}
+
+//update hangman
+function penduDrawUpdate(){
+  const canvas = document.getElementById("pendu");
+  if (canvas.getContext) {
+    const ctx = canvas.getContext("2d");
+
+    ctx.beginPath();
+
+    switch(step){
+      case 1:
+        ctx.moveTo(200, 50);
+        ctx.arc(200, 50 + 20, 20, 180, 360);
+        break;
+      case 2:
+        ctx.moveTo(200, 50+20*2);
+        ctx.lineTo(200, 50+20*2 + 80);
+        break;
+      case 3:
+        ctx.moveTo(200, 50+20*2 + 40);
+        ctx.lineTo(200 - 40, 50+20*2 );
+        break;
+      case 4:
+        ctx.moveTo(200, 50+20*2 + 40);
+        ctx.lineTo(200 + 40, 50+20*2 );
+        break;
+      case 5:
+        ctx.moveTo(200, 50+20*2 + 80);
+        ctx.lineTo(200 - 40, 50+20*2 + 80 + 40);
+        break;
+      case 6:
+        ctx.moveTo(200, 50+20*2 + 80);
+        ctx.lineTo(200 + 40, 50+20*2 + 80 + 40);
+        break;
+      default:
+        ctx.fillStyle = "crimson";
+        ctx.fillRect(0,0,300,300);
+        ctx.fill();
+
+        ctx.fillStyle = "white";
+        ctx.font = "48px serif";
+        ctx.fillText("Perdu!", 50, 150);
+        ctx.fillStyle = "lightyellow";
+        ctx.font = "24px sans-serif";
+        ctx.fillText("C'etait '{{ pokename.upper() }}'", 5, 200);
+
+
+        break;
+    }
+
+    ctx.stroke();
+  }
+}
+
+//draw the base of the hangman
+function penduDrawBase(){
+  const canvas = document.getElementById("pendu");
+  if (canvas.getContext) {
+    const ctx = canvas.getContext("2d");
+
+    ctx.strokeStyle = "white";
+    //ext border
+    //ctx.strokeRect(0,0, 300,300);
+
+    ctx.beginPath();
+    //floor
+    ctx.moveTo(0, 280);
+    ctx.lineTo(300, 280);
+
+    //v pole
+    ctx.moveTo(100, 280);
+    ctx.lineTo(100, 1);
+
+    //h pole
+    ctx.lineTo(200, 1);
+
+    //rope
+    ctx.lineTo(200, 50);
+
+    //supporter
+    ctx.moveTo(100, 30);
+    ctx.lineTo(130, 0);
+
+    ctx.stroke();
+  }  
+}
+
+//Do on first load
+function onFirstLoad(){
+  var t = document.getElementById("text");
+  t.focus();
+
+  penduDrawBase();
+}
+
+onFirstLoad();
+
+</script>
+
+{{ dbg }}
+{% endblock %}

@@ -13,6 +13,8 @@ from game_initale.game_initiale import initiale_bp
 from game_melimelo.game_melimelo import melimelo_bp
 from game_pendu.game_pendu import pendu_bp
 from game_random.game_random import random_bp
+from game_listening.game_listening import listening_bp
+
 # NOT using pokebase in the end, the performances are so badm it takes 3-5 sec to get the object though calling the URL + parsing the json is < 250ms
 #import pokebase
 #use my poor man reimplementation with cache
@@ -68,6 +70,11 @@ app.register_blueprint(melimelo_bp)
 #-----------------------------------------------------------------------
 #REST API to change the language
 app.register_blueprint(api_bp, url_prefix='/api')
+
+#-----------------------------------------------------------------------
+#GAME LISTENING : write a word you heard
+app.register_blueprint(listening_bp)
+
 
 ########################################################################################
 ## Main entry point
