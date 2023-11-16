@@ -230,3 +230,9 @@ div.pendu_input {
     font-size: 24px;
     font-weight: bold;
 }
+
+/* ----------------------------- Listening -------------------------------------- */
+button.replaySound {
+    width: 200px;
+    height: 200px;
+}

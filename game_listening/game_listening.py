@@ -26,15 +26,15 @@ with open("game_listening/wikisource.txt", mode="r") as f:
 
 @listening_bp.route('/listening')
 def randomWordPage():
-    w = get_random_word()
+    toHear = get_random_word()
     
     #I don't have a keyboard with accents, so I remove them
-    w = removeAccents(w)
+    toType = removeAccents(toHear)
 
     #this will deserve be improved if we want to support more languages
     lang = "fr-fr" if myconfig["language"] == "fr" else "ja-jp" if myconfig["language"] == "jp" else "ko-kr"
     
-    return render_template("listening_template.html", pokename=w, jscontent=f"speech2textAPI('{lang}', '{w}');" )
+    return render_template("listening_template.html", toType=toType, toHear=toHear, jscontent=f"speech2textAPI('{lang}', '{toHear}');" )
 
 
 
