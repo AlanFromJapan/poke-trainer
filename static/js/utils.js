@@ -72,8 +72,9 @@ function switchLetterCase(l){
 
 var lastAudio = null;
 
-function speech2text(key, text){
-    var url = "http://api.voicerss.org/?key=" + key + "&hl=fr-fr&c=MP3&v=Zola&f=16khz_16bit_mono&src=" + text;
+//plays the audio for the text
+function speech2textAPI(lang, text){
+    var url = "api/speech2text/" + lang + "/" + text;
     const audioElement = new Audio(url);
     audioElement.play();
 
