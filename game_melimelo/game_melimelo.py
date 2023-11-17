@@ -30,12 +30,12 @@ def gameCpage():
 
 
 def htmlRenderPageHeader():
-    return """<td><a href="listening">Jeu: Meli-melo</a></td>"""
+    return """<td><a href="gameC">Jeu: Meli-melo</a></td>"""
 
 def htmlRenderHomepageCard():
     return """
 <td>
-    <span class="gamename">Meli-melo</span><br/>
+    <span class="gamename"><a href="gameC">Meli-melo</a></span><br/>
         Remet les lettres dans le bon ordre.
 </td>
 """

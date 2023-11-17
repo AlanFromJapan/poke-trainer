@@ -30,12 +30,12 @@ def gameBpage():
 
 
 def htmlRenderPageHeader():
-    return """<td><a href="listening">Jeu: Pendu</a></td>"""
+    return """<td><a href="gameB">Jeu: Pendu</a></td>"""
 
 def htmlRenderHomepageCard():
     return """
 <td>
-    <span class="gamename">Pendu</span><br/>
+    <span class="gamename"><a href="gameB">Pendu</a></span><br/>
             Le jeu du pendu, ecrit tout le mot sans te tromper sinon...
 </td>
 """

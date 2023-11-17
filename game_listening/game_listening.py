@@ -43,7 +43,7 @@ def htmlRenderPageHeader():
 def htmlRenderHomepageCard():
     return """
 <td>
-    <span class="gamename">Jeu d'ecoute</span><br/>
+    <span class="gamename"><a href="listening">Jeu: Ecoute</a></span><br/>
     Ecoute un mot et tape le mot entendu.
 </td>
 """

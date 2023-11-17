@@ -43,12 +43,12 @@ def gameApage():
 
 
 def htmlRenderPageHeader():
-    return """<td><a href="listening">Jeu: Initiale</a></td>"""
+    return """<td><a href="gameA">Jeu: Initiale</a></td>"""
 
 def htmlRenderHomepageCard():
     return """
 <td>
-    <span class="gamename">Initiale</span><br/>
+    <span class="gamename"><a href="gameA">Initiale</a></span><br/>
             Trouve la premiere lettre du nom d'un pokemon!
 </td>
 """
