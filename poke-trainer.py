@@ -69,7 +69,7 @@ app.register_blueprint(pendu_bp)
     
 #-----------------------------------------------------------------------
 #GAME C : "meli-melo" put the letters of the pokemon in the right order
-app.register_blueprint(melimelo_bp)
+#app.register_blueprint(melimelo_bp)
 
 #-----------------------------------------------------------------------
 #REST API to change the language
