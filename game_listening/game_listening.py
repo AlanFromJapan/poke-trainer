@@ -4,6 +4,7 @@ import re
 
 from config import myconfig
 
+from LanguageItem import LanguageItem
 from poorman_textutils import removeAccents
 
 listening_bp = Blueprint('listening_bp', __name__, template_folder='templates')
@@ -31,12 +32,27 @@ def randomWordPage():
     #I don't have a keyboard with accents, so I remove them
     toType = removeAccents(toHear)
 
-    #this will deserve be improved if we want to support more languages
-    lang = "fr-fr" if myconfig["language"] == "fr" else "ja-jp" if myconfig["language"] == "jp" else "ko-kr"
-    
-    return render_template("listening_template.html", toType=toType, toHear=toHear, jscontent=f"speech2textAPI('{lang}', '{toHear}');" )
+    la = LanguageItem(toType, toHear, None, myconfig["language"])
+
+    return render_template("listening_template.html", item=la)
+
+
+def htmlRenderPageHeader():
+    return """<td><a href="listening">Jeu: Ecoute</a></td>"""
+
+def htmlRenderHomepageCard():
+    return """
+<td>
+    <span class="gamename">Jeu d'ecoute</span><br/>
+    Ecoute un mot et tape le mot entendu.
+</td>
+"""
 
 
 
 def get_random_word():
     return wordlist[random.randint(0, len(wordlist)-1)]
+
+#at last some injection of methods in the blueprint
+listening_bp.htmlRenderPageHeader = htmlRenderPageHeader
+listening_bp.htmlRenderHomepageCard = htmlRenderHomepageCard

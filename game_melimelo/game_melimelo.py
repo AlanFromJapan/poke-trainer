@@ -29,3 +29,16 @@ def gameCpage():
     return render_template("gameC.html", pagecontent="test test", score=score, pokemon=pokemon, pokename=name)
 
 
+def htmlRenderPageHeader():
+    return """<td><a href="listening">Jeu: Meli-melo</a></td>"""
+
+def htmlRenderHomepageCard():
+    return """
+<td>
+    <span class="gamename">Meli-melo</span><br/>
+        Remet les lettres dans le bon ordre.
+</td>
+"""
+#at last some injection of methods in the blueprint
+melimelo_bp.htmlRenderPageHeader = htmlRenderPageHeader
+melimelo_bp.htmlRenderHomepageCard = htmlRenderHomepageCard

@@ -29,3 +29,16 @@ def gameBpage():
     return render_template("gameB.html", pagecontent="test test", score=score, pokemon=pokemon, pokename=name)
 
 
+def htmlRenderPageHeader():
+    return """<td><a href="listening">Jeu: Pendu</a></td>"""
+
+def htmlRenderHomepageCard():
+    return """
+<td>
+    <span class="gamename">Pendu</span><br/>
+            Le jeu du pendu, ecrit tout le mot sans te tromper sinon...
+</td>
+"""
+#at last some injection of methods in the blueprint
+pendu_bp.htmlRenderPageHeader = htmlRenderPageHeader
+pendu_bp.htmlRenderHomepageCard = htmlRenderHomepageCard

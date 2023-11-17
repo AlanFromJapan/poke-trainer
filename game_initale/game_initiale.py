@@ -41,3 +41,17 @@ def gameApage():
     
     return render_template("gameA.html", pagecontent="test test", cards=cards, letterstyle= myconfig['letterstyle'], lettercase= myconfig['lettercase'], pokemon=pokemon, pokename=name, score=score)
 
+
+def htmlRenderPageHeader():
+    return """<td><a href="listening">Jeu: Initiale</a></td>"""
+
+def htmlRenderHomepageCard():
+    return """
+<td>
+    <span class="gamename">Initiale</span><br/>
+            Trouve la premiere lettre du nom d'un pokemon!
+</td>
+"""
+#at last some injection of methods in the blueprint
+initiale_bp.htmlRenderPageHeader = htmlRenderPageHeader
+initiale_bp.htmlRenderHomepageCard = htmlRenderHomepageCard

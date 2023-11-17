@@ -41,7 +41,7 @@
 <!-- LOL CSS had to search "how to center a div"-->
 <div style="text-align: center;">
   <div id="output" class="pendu_list">
-    {% for l in toType %}
+    {% for l in item.toType %}
     <div class="pendu_card">
       <div class="letter" name="letter" my-letter="{{ l }}">_</div>
     </div>    
@@ -54,7 +54,7 @@
 <br/>
 
 <div style="text-align: center;">
-  <a href="listening" onclick="alert('La reponse etait \'' + '{{toHear}}'.toUpperCase() + '\'');">J'abandonne ... suivant!</a>
+  <a href="listening" onclick="alert('La reponse etait \'' + '{{item.toHear}}'.toUpperCase() + '\'');">J'abandonne ... suivant!</a>
 </div>
 
 
@@ -97,7 +97,7 @@ function checkWin() {
 
   if (allFound == true) {
     var r = document.getElementById('result');
-    r.innerHTML = "Bravo, c'etait <span class='game_pokemon_name'>{{ toHear }}</span>!";
+    r.innerHTML = "Bravo, c'etait <span class='game_pokemon_name'>{{ item.toHear }}</span>!";
     //show the next button
     var suiv = document.getElementById('suivant');
     suiv.style.display = "block";
@@ -113,6 +113,8 @@ function onFirstLoad(){
   var t = document.getElementById("text");
   t.focus();
 
+  //play the sound
+  speech2textAPI('{{item.lang4}}', '{{item.toHear}}');
 }
 
 //play sound and then focus the text box

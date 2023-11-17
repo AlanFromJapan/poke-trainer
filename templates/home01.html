@@ -13,18 +13,11 @@ This app couldn't exist without <b><a href="https://pokeapi.co/">PokeAPI</a> ❤
 
 <table class="gameslist">
     <tr>
-        <td>
-            <span class="gamename">Initiale</span><br/>
-            Trouve la premiere lettre du nom d'un pokemon!
-        </td>
-        <td>
-            <span class="gamename">Pendu</span><br/>
-            Le jeu du pendu, ecrit tout le nom du pokemon sans te tromper sinon...
-        </td>
-        <td>
-            <span class="gamename">Meli-melo</span><br/>
-            Remet les lettres du nom du pokemon dans le bon ordre.
-        </td>
+{% for c in gamecards %}
+    {% autoescape false %}
+    {{ c }}
+    {% endautoescape %}  
+{% endfor %}
     </tr>
 </table>
 {{ dbg }}

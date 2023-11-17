@@ -48,7 +48,11 @@ def got2home():
 
 @app.route('/home')
 def homepage():
-    return render_template("home01.html", pagename="Home", logo= Pokepoor.getPokemon(random.randrange(1, myconfig["max pokemon id"])).spriteURL)
+    gamecards = []
+    for bp in app.blueprints.values():
+        if hasattr(bp, "htmlRenderHomepageCard"):
+            gamecards.append(bp.htmlRenderHomepageCard())
+    return render_template("home01.html", pagename="Home", gamecards=gamecards, logo= Pokepoor.getPokemon(random.randrange(1, myconfig["max pokemon id"])).spriteURL)
 
 
 #-----------------------------------------------------------------------
