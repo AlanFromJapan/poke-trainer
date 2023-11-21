@@ -70,13 +70,16 @@ function textChanged() {
   var t = document.getElementById("text");
 
   var candidate = t.value.toLowerCase()[0];
-  var found = false;
 
   var letterz = document.getElementsByName("letter");
   for (const l of letterz){
-    if (l.getAttribute("my-letter").toLowerCase() == candidate) {
-      l.innerHTML = candidate.toUpperCase();
-      found=true;
+    if ("_" == l.innerHTML){
+      //found first empty character
+      if (l.getAttribute("my-letter").toLowerCase() == candidate) {
+        l.innerHTML = candidate.toUpperCase();
+      }
+      //the line must be drawn here, no further
+      break;
     }
   }
 
