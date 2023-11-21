@@ -23,7 +23,14 @@
 
 
     </td>
-    <td><button id="rejouer" class="replaySound" onclick="javascript:replay();">▶️ Rejouer! 再生! Replay!</button></td>
+    <td>
+      <button id="rejouer" class="replaySound" onclick="javascript:replay();">▶️ Rejouer! 再生! Replay!</button>
+<br/>
+<br/>
+      <button id="btnShowHint" onclick="javascript:showHint();">Montrer un indice?</button><br/>
+      <div id="divZaHint" ></div>
+    
+    </td>
   </tr>
   <tr>
     <td colspan="2">
@@ -109,6 +116,20 @@ function checkWin() {
     //highlight
     card.children[0].style.color = 'forestgreen';
   }
+}
+
+
+
+//Shows the hint as the correct letters in random order
+function showHint(){
+  var secret = "{{ item.toType }}";
+  var shuffled = shuffle(secret);
+
+  
+  var t = document.getElementById("divZaHint");
+  t.innerHTML = shuffled;
+  t.style.display = "block";
+
 }
 
 //Do on first load
