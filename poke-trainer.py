@@ -98,5 +98,7 @@ if __name__ == '__main__':
         app.debug = True
         app.run(host='0.0.0.0', port=56789, threaded=True)
 
-    finally:
-        pass
+    except Exception as e:
+        print("Error in main: %s" % str(e))
+        app.logger.error("Error in main: %s" % str(e))
+        raise

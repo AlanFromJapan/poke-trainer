@@ -51,7 +51,6 @@ Translations:
         ## 0- cache fault
         #
         app.logger.warning(f"Cache miss for {id}")
-        print(__name__)
 
         #######
         ## 1- get basics
