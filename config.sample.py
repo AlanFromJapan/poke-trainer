@@ -21,5 +21,8 @@ myconfig = {
     "lettercase" : "lowercase",
 
     #VoiceRSS key for speech to text
-    "VoiceRSS key" : "your key here"
+    "VoiceRSS key" : "your key here",
+
+    #where is the logfile
+    "logfile" : "/tmp/poke-trainer.log",
 }

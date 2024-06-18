@@ -1,8 +1,8 @@
 import random
-from logging.handlers import RotatingFileHandler
+import logging
+import os
 
-from flask import (Flask, make_response, redirect, render_template, request,
-                   send_file, url_for)
+from flask import Flask, redirect, render_template
 #running behind proxy?                                                                                            
 from werkzeug.middleware.proxy_fix import ProxyFix
 
@@ -85,6 +85,15 @@ app.register_blueprint(listening_bp)
 #
 if __name__ == '__main__':
     try:
+        #logging
+        directory = os.path.dirname(myconfig.get("logfile", "/tmp/poketrainer.log"))
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+
+        logging.basicConfig(filename=myconfig.get("logfile", "/tmp/poketrainer.log"), encoding='utf-8', level=logging.WARN)
+
+        app.logger.warning("Starting the app")
+
         #start web interface
         app.debug = True
         app.run(host='0.0.0.0', port=56789, threaded=True)

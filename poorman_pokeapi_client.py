@@ -4,6 +4,7 @@ import json
 from functools import lru_cache
 import datetime
 import config
+from flask import current_app as app
 
 
 URL_MAIN="https://pokeapi.co/api/v2/pokemon/<ID>/"
@@ -11,20 +12,14 @@ URL_SPECIES="https://pokeapi.co/api/v2/pokemon-species/<ID>"
 
 
 class Pokepoor:
-    name = ""
-    id = 0
-    species = []
-    spriteURL = ""
-    spriteURL_big = ""
-    #maps language to translation (ie: "fr" -> "Bulbizarre")
-    translations= {}
-
     def __init__(self, name, id, species, sprite) -> None:
         self.name = name
         self.id = id
         self.species = species
         self.spriteURL = sprite
         self.spriteURL_big = ""
+        #maps language to translation (ie: "fr" -> "Bulbizarre")
+        self.translations= {}    
 
     
     def __str__(self) -> str:
@@ -53,6 +48,12 @@ Translations:
     #Returns a pokemon details
     def getPokemon(id:int) -> "Pokepoor":
         #######
+        ## 0- cache fault
+        #
+        app.logger.warning(f"Cache miss for {id}")
+        print(__name__)
+
+        #######
         ## 1- get basics
         #
         resp = requests.get(URL_MAIN.replace("<ID>", str(id)), verify=config.myconfig["SSL_CHECK"])
@@ -64,8 +65,11 @@ Translations:
         #try to get a BIG image if exists
         try:
             p.spriteURL_big = j["sprites"]["other"]["official-artwork"]["front_default"]
-        finally:
-            pass
+        except Exception as e:
+            app.logger.warning("No big image for ", p.name)
+            app.logger.warning(e)
+            app.logger.warning("JSON was ", j)
+            p.spriteURL_big = p.spriteURL
 
         #######
         ## 2- get name translations
