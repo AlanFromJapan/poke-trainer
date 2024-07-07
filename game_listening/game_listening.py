@@ -1,4 +1,4 @@
-from flask import Blueprint, request, render_template
+from flask import Blueprint, current_app, render_template
 import random
 import re
 
@@ -34,7 +34,7 @@ def randomWordPage():
 
     la = LanguageItem(toType, toHear, None, myconfig["language"])
 
-    return render_template("listening_template.html", item=la)
+    return render_template("listening_template.html", item=la, **current_app.global_render_template_params)
 
 
 def htmlRenderPageHeader():

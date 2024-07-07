@@ -1,4 +1,4 @@
-from flask import Blueprint, request, render_template
+from flask import Blueprint, request, render_template, current_app
 import random
 
 # NOT using pokebase in the end, the performances are so badm it takes 3-5 sec to get the object though calling the URL + parsing the json is < 250ms
@@ -26,7 +26,7 @@ def gameBpage():
     
     score = int(request.args.get('lastscore', default="-1")) + 1   
 
-    return render_template("gameB.html", pagecontent="test test", score=score, pokemon=pokemon, pokename=name)
+    return render_template("gameB.html", pagecontent="test test", score=score, pokemon=pokemon, pokename=name, **current_app.global_render_template_params)
 
 
 def htmlRenderPageHeader():

@@ -2,7 +2,7 @@ import random
 import logging
 import os
 
-from flask import Flask, redirect, render_template
+from flask import Flask, redirect, render_template, current_app
 #running behind proxy?                                                                                            
 from werkzeug.middleware.proxy_fix import ProxyFix
 
@@ -52,8 +52,18 @@ def homepage():
     for bp in app.blueprints.values():
         if hasattr(bp, "htmlRenderHomepageCard"):
             gamecards.append(bp.htmlRenderHomepageCard())
-    return render_template("home01.html", pagename="Home", gamecards=gamecards, logo= Pokepoor.getPokemon(random.randrange(1, myconfig["max pokemon id"])).spriteURL)
 
+
+    return render_template("home01.html", pagename="Home", gamecards=gamecards, logo= Pokepoor.getPokemon(random.randrange(1, myconfig["max pokemon id"])).spriteURL, **current_app.global_render_template_params)
+
+
+@app.before_request
+def set_global_variables():
+    headerz = []
+    for bp in app.blueprints.values():
+        if hasattr(bp, "htmlRenderPageHeader"):
+            headerz.append(bp.htmlRenderPageHeader())
+    current_app.global_render_template_params = {"headerz": headerz} 
 
 #-----------------------------------------------------------------------
 #Get a random pokemon, good for debugging

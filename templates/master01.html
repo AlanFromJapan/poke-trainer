@@ -11,11 +11,13 @@
 <table class="header">
   <tr>
     <td><a href="home">Home</a></td>
-    <td><a href="randomPokemon">Random Pokemon</a></td>
-    <td><a href="gameA">Jeu: Initiale</a></td>
-    <td><a href="gameB">Jeu: Pendu</a></td>
-    <td><a href="gameC">Jeu: Meli-melo</a></td>
-    <td><a href="listening">Jeu: Ecoute</a></td>
+
+{% for c in headerz %}
+    {% autoescape false %}
+    {{ c }}
+    {% endautoescape %}  
+{% endfor %}
+    
     <td>
       <button type="button" onClick="showSettings();">Settings</button>
 
