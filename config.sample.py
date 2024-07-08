@@ -25,4 +25,7 @@ myconfig = {
 
     #where is the logfile
     "logfile" : "/tmp/poke-trainer.log",
+
+    #TCP port number to listen to
+    "port" : 56788,
 }

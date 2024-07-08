@@ -106,7 +106,7 @@ if __name__ == '__main__':
 
         #start web interface
         app.debug = True
-        app.run(host='0.0.0.0', port=56789, threaded=True)
+        app.run(host='0.0.0.0', port=myconfig.get("port", 12345), threaded=True)
 
     except Exception as e:
         print("Error in main: %s" % str(e))
