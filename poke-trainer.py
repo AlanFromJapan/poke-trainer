@@ -100,7 +100,8 @@ if __name__ == '__main__':
         if not os.path.exists(directory):
             os.makedirs(directory)
 
-        logging.basicConfig(filename=myconfig.get("logfile", "/tmp/poketrainer.log"), encoding='utf-8', level=logging.WARN)
+        #logging.basicConfig(filename=myconfig.get("logfile", "/tmp/poketrainer.log"), encoding='utf-8', level=logging.WARN)
+        logging.basicConfig(filename=myconfig.get("logfile", "/tmp/poketrainer.log"), level=logging.WARN)
 
         app.logger.warning("Starting the app")
 
