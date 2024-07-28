@@ -28,7 +28,7 @@ app.secret_key = myconfig["session secret key"]
 
 #if behind a proxy set the WSGI properly 
 # see http://electrogeek.tokyo/setup%20flask%20behind%20nginx%20proxy.html
-if myconfig["BehindProxy"]:
+if myconfig.get("BehindProxy", False):
     app.wsgi_app = ProxyFix(
         app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1
     )
