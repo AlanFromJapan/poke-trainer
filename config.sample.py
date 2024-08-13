@@ -1,3 +1,5 @@
+from flask_subdirector import run_flask_in_subdirectory
+
 myconfig = {
     "max pokemon id": 150,
     "language" : "fr",
@@ -28,4 +30,10 @@ myconfig = {
 
     #TCP port number to listen to
     "port" : 56788,
+
+    #if you want to run behind a proxy AND in a subdirectory.
+    # subdirectory: the name of the subdirectory you want to run the app in. Can be "xxx" or "xxx/yyy" or "xxx/yyy/zzz" etc.
+    # default_page: the name of the landing page (default "home")
+    "subdirectory" : lambda ap: run_flask_in_subdirectory (ap, "subdir"),
+    
 }

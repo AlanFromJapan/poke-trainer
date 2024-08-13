@@ -42,10 +42,8 @@ ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'ico'])
 #
 #-----------------------------------------------------------------------
 #Landing page, not much to see here but at least if API connectivity doesn't you will know immediately
-@app.route('/')
-def got2home():
-    return redirect("/home")
 
+@app.route('/')
 @app.route('/home')
 def homepage():
     gamecards = []
@@ -100,10 +98,13 @@ if __name__ == '__main__':
         if not os.path.exists(directory):
             os.makedirs(directory)
 
-        #logging.basicConfig(filename=myconfig.get("logfile", "/tmp/poketrainer.log"), encoding='utf-8', level=logging.WARN)
         logging.basicConfig(filename=myconfig.get("logfile", "/tmp/poketrainer.log"), level=logging.WARN)
 
         app.logger.warning("Starting the app")
+
+        #run the subdirectory if needed
+        if "subdirectory" in myconfig:
+            myconfig["subdirectory"](app)
 
         #start web interface
         app.debug = True
