@@ -95,7 +95,7 @@ if __name__ == '__main__':
     try:
         #logging
         directory = os.path.dirname(myconfig.get("logfile", "/tmp/poketrainer.log"))
-        if not os.path.exists(directory):
+        if directory != "" and not os.path.exists(directory):
             os.makedirs(directory)
 
         logging.basicConfig(filename=myconfig.get("logfile", "/tmp/poketrainer.log"), level=logging.WARN)
