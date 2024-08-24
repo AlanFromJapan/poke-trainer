@@ -15,10 +15,13 @@ I was planning to use the lib *pokebase* but it's SO SLOW it's unuseable. Appare
 1. Make a virtual env `python -m venv .`
 1. `source bin/activate`
 1. `python -m pip install -r requirements.txt`
+1. `copy config.sample.py config.py` and edit to your heart's content
 1. `python poke-trainer.py`
 
 ## Run in a Docker container
-1. `docker build -t "poke"` to build it
-1. `docker run -d -p 56788:56788 --restart unless-stopped --name "poke-trainer" "poke"` to start it
+From the Git folder freshly cloned:
+1. `copy config.sample.py config.py` and edit to your heart's content
+1. `docker build -t "poke" .` to build the image labelled "poke"
+1. `docker run -d -p 56788:56788 --restart unless-stopped --name "poke-trainer" "poke"` to start it as container named "poke-trainer"
     - Add the `-d` to run Detached
 1. `docker stop "poke-trainer"` to stop it 
