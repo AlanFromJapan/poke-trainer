@@ -18,5 +18,7 @@ I was planning to use the lib *pokebase* but it's SO SLOW it's unuseable. Appare
 1. `python poke-trainer.py`
 
 ## Run in a Docker container
-1. `docker build -t "poke"`
-1. `docker run "poke"`
+1. `docker build -t "poke"` to build it
+1. `docker run -d -p 56788:56788 --restart unless-stopped --name "poke-trainer" "poke"` to start it
+    - Add the `-d` to run Detached
+1. `docker stop "poke-trainer"` to stop it 
