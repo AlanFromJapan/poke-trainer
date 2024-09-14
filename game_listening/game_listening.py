@@ -1,4 +1,4 @@
-from flask import Blueprint, current_app, render_template
+from flask import Blueprint, current_app, render_template, session
 import random
 import re
 
@@ -32,7 +32,7 @@ def randomWordPage():
     #I don't have a keyboard with accents, so I remove them
     toType = removeAccents(toHear)
 
-    la = LanguageItem(toType, toHear, None, myconfig["language"])
+    la = LanguageItem(toType, toHear, None, session["language"])
 
     return render_template("listening_template.html", item=la, **current_app.global_render_template_params)
 

@@ -1,4 +1,4 @@
-from flask import Blueprint, request, render_template
+from flask import Blueprint, request, render_template, session
 import random
 
 # NOT using pokebase in the end, the performances are so badm it takes 3-5 sec to get the object though calling the URL + parsing the json is < 250ms
@@ -17,9 +17,9 @@ def gameCpage():
     score = 0
     pokeid = random.randrange(1,myconfig["max pokemon id"])
     pokemon = Pokepoor.getPokemon(pokeid)
-    name = pokemon.translations[myconfig['language']]
+    name = pokemon.translations[session['language']]
 
-    if myconfig['language'] == "fr":
+    if session['language'] == "fr":
         #remove nasty accents
         name = poorman_textutils.removeAccents(name)
 

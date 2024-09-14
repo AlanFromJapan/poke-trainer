@@ -2,7 +2,7 @@ import random
 import logging
 import os
 
-from flask import Flask, redirect, render_template, current_app
+from flask import Flask, redirect, render_template, current_app, session
 #running behind proxy?                                                                                            
 from werkzeug.middleware.proxy_fix import ProxyFix
 
@@ -42,6 +42,16 @@ ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'ico'])
 #
 #-----------------------------------------------------------------------
 #Landing page, not much to see here but at least if API connectivity doesn't you will know immediately
+
+@app.before_request
+def init_session():
+    if "language" not in session:
+        session["language"] = myconfig["language"]
+    if "letterstyle" not in session:
+        session["letterstyle"] = myconfig["letterstyle"]
+    if "lettercase" not in session:
+        session["lettercase"] = myconfig["lettercase"]
+
 
 @app.route('/')
 @app.route('/home')

@@ -1,4 +1,4 @@
-from flask import Blueprint, request, render_template, current_app
+from flask import Blueprint, request, render_template, current_app, session
 import random
 
 # NOT using pokebase in the end, the performances are so badm it takes 3-5 sec to get the object though calling the URL + parsing the json is < 250ms
@@ -22,13 +22,13 @@ def gameApage():
 
     pokeid = random.randrange(1,myconfig["max pokemon id"])
     pokemon = Pokepoor.getPokemon(pokeid)
-    name = pokemon.translations[myconfig['language']]
+    name = pokemon.translations[session['language']]
 
 
     cards = []
     cards.append(name[0])
     while len(cards) < myconfig["gameA cards"]:
-        l = poorman_textutils.getRandomLetter(myconfig['language'])
+        l = poorman_textutils.getRandomLetter(session['language'])
         if not l in cards:
             cards.append(l)
     
@@ -39,7 +39,7 @@ def gameApage():
 
     score = int(request.args.get('lastscore', default="-1")) + 1   
     
-    return render_template("gameA.html", pagecontent="test test", cards=cards, letterstyle= myconfig['letterstyle'], lettercase= myconfig['lettercase'], pokemon=pokemon, pokename=name, score=score, **current_app.global_render_template_params)
+    return render_template("gameA.html", pagecontent="test test", cards=cards, letterstyle= session['letterstyle'], lettercase= session['lettercase'], pokemon=pokemon, pokename=name, score=score, **current_app.global_render_template_params)
 
 
 def htmlRenderPageHeader():
