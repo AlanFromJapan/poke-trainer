@@ -20,6 +20,9 @@ from game_listening.game_listening import listening_bp
 #use my poor man reimplementation with cache
 from poorman_pokeapi_client import Pokepoor
 
+#the score manager
+from score_manager import score_manager_session
+
 ########################################################################################
 ## Flask vars
 #
@@ -52,6 +55,8 @@ def init_session():
     if "lettercase" not in session:
         session["lettercase"] = myconfig["lettercase"]
 
+        
+
 
 @app.route('/')
 @app.route('/home')
@@ -71,7 +76,9 @@ def set_global_variables():
     for bp in app.blueprints.values():
         if hasattr(bp, "htmlRenderPageHeader"):
             headerz.append(bp.htmlRenderPageHeader())
-    current_app.global_render_template_params = {"headerz": headerz} 
+    current_app.global_render_template_params = {"headerz": headerz, "scoremgr": score_manager_session()} 
+
+
 
 #-----------------------------------------------------------------------
 #Get a random pokemon, good for debugging

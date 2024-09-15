@@ -5,7 +5,7 @@
 {% block contents %} 
 
 <h1>Game - L'initiale du Pokemon</h1>
-<div class="game_score"><span>Score</span><br/><span class="game_score_val">{{ score }}</span></div>
+<div class="game_score"><span>Score</span><br/><span class="game_score_val">{{ scoremgr.get_score("gameA") }}</span></div>
 <div class="game_img"><img src="{{ pokemon.spriteURL_big }}" /></div>
 <div class="game_result">
   <span id="result"></span> <br/>

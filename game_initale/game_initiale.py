@@ -7,7 +7,7 @@ import random
 from poorman_pokeapi_client import Pokepoor
 import poorman_textutils
 from config import myconfig
-
+from score_manager import score_manager
 
 
 initiale_bp = Blueprint('initiale_bp', __name__, template_folder='templates')
@@ -37,9 +37,15 @@ def gameApage():
     #gotta love Python <3
     random.shuffle(cards)
 
-    score = int(request.args.get('lastscore', default="-1")) + 1   
-    
-    return render_template("gameA.html", pagecontent="test test", cards=cards, letterstyle= session['letterstyle'], lettercase= session['lettercase'], pokemon=pokemon, pokename=name, score=score, **current_app.global_render_template_params)
+    if "lastscore" in request.args:
+        #inc score if we come back to this page
+        current_app.global_render_template_params["scoremgr"].inc_score("gameA")
+    else:
+        #set initial score if we come here for the first time 
+        current_app.global_render_template_params["scoremgr"].set_score("gameA", 0)
+
+
+    return render_template("gameA.html", pagecontent="test test", cards=cards, letterstyle= session['letterstyle'], lettercase= session['lettercase'], pokemon=pokemon, pokename=name, **current_app.global_render_template_params)
 
 
 def htmlRenderPageHeader():
