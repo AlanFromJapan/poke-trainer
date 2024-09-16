@@ -1,4 +1,5 @@
 from flask_subdirector import run_flask_in_subdirectory
+import logging
 
 myconfig = {
     "max pokemon id": 150,
@@ -27,6 +28,9 @@ myconfig = {
 
     #where is the logfile
     "logfile" : "/tmp/poke-trainer.log",
+
+    #log level
+    "loglevel" : logging.INFO,
 
     #TCP port number to listen to
     "port" : 56788,
