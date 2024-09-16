@@ -1,4 +1,4 @@
-from flask import Blueprint, session
+from flask import Blueprint, session, current_app
 import requests
 from config import myconfig
 
@@ -33,3 +33,19 @@ def speech2Text(lang, message):
     prepared = req.prepare()
     resp = requests.Session().send(prepared, stream=True, verify=myconfig["SSL_CHECK"])
     return resp.raw.read(), resp.status_code, resp.headers.items()
+
+
+#Score manager
+@api_bp.route("/score/<action>/<game>", methods=['GET'])
+def score(action, game):
+    current_app.logger.info(f"Score action {action} on game {game}")
+    if action == "get":
+        return current_app.global_render_template_params["scoremgr"].get_score(game)
+    elif action == "inc":
+        current_app.global_render_template_params["scoremgr"].inc_score(game)
+    elif action == "reset":
+        current_app.global_render_template_params["scoremgr"].reset_score(game)
+    else:
+        current_app.logger.error(f"Unknown action {action} for score on game {game}")
+    
+    return "OK"

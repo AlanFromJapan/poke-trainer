@@ -100,3 +100,15 @@ function shuffle (s) {
     }
     return a.join("");
 }
+
+
+//Score API functions
+function callScoreAPI(action, game){
+
+    //https://stackoverflow.com/questions/36975619/how-to-call-a-rest-web-service-api-from-javascript
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.open("GET", "api/score/" + action + "/" + game, true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
+}

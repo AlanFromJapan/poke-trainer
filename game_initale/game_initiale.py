@@ -36,14 +36,6 @@ def game_initiale():
     #gotta love Python <3
     random.shuffle(cards)
 
-    if "lastscore" in request.args:
-        #inc score if we come back to this page
-        current_app.global_render_template_params["scoremgr"].inc_score("gameA")
-    else:
-        #set initial score if we come here for the first time 
-        current_app.global_render_template_params["scoremgr"].set_score("gameA", 0)
-
-
     return render_template("gameA.html", cards=cards, pokemon=pokemon, pokename=name, **current_app.global_render_template_params)
 
 
