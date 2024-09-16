@@ -23,8 +23,7 @@ class score_manager():
 
 
     def reset_score(self, game):
-        store = self.score_storage()
-        store[game] = 0
+        self.set_score(game, 0)
 
 
     def inc_score(self, game):
