@@ -12,9 +12,8 @@ from config import myconfig
 pendu_bp = Blueprint('pendu_bp', __name__, template_folder='templates')
 
 
-@pendu_bp.route("/gameB")
-def gameBpage():
-    score = 0
+@pendu_bp.route("/pendu")
+def game_pendu():
     pokeid = random.randrange(1,myconfig["max pokemon id"])
     pokemon = Pokepoor.getPokemon(pokeid)
     name = pokemon.translations[session['language']]
@@ -24,18 +23,16 @@ def gameBpage():
         name = poorman_textutils.removeAccents(name)
 
     
-    score = int(request.args.get('lastscore', default="-1")) + 1   
-
-    return render_template("gameB.html", pagecontent="test test", score=score, pokemon=pokemon, pokename=name, **current_app.global_render_template_params)
+    return render_template("gameB.html", pokemon=pokemon, pokename=name, **current_app.global_render_template_params)
 
 
 def htmlRenderPageHeader():
-    return """<td><a href="gameB">Jeu: Pendu</a></td>"""
+    return """<td><a href="pendu">Jeu: Pendu</a></td>"""
 
 def htmlRenderHomepageCard():
     return """
 <td>
-    <span class="gamename"><a href="gameB">Pendu</a></span><br/>
+    <span class="gamename"><a href="pendu">Pendu</a></span><br/>
             Le jeu du pendu, ecrit tout le mot sans te tromper sinon...
 </td>
 """

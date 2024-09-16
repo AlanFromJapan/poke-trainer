@@ -5,7 +5,7 @@
 {% block contents %} 
 
 <h1>Game - Pokemon pendu</h1>
-<div class="game_score"><span>Score</span><br/><span class="game_score_val">{{ score }}</span></div>
+<div class="game_score"><span>Score</span><br/><span class="game_score_val">{{ scoremgr.get_score("pendu") }}</span></div>
 
 <table class="halfhalf">
   <tr>
@@ -33,7 +33,7 @@
       <div class="game_result">
         <span id="result"></span> <br/>
         <br/>
-        <div id="suivant" style="display:none;"><a class="next" href='gameB?lastid={{ pokemon.id }}&lastscore={{score}}' >Suivant...</a></div><br/>
+        <div id="suivant" style="display:none;"><a class="next" href='pendu' >Suivant...</a></div><br/>
         <br/>
       </div>
     </td>
@@ -111,8 +111,8 @@ function checkWin() {
     //show the next button
     document.getElementById('suivant').style.display = "block";
 
-    //highlight
-    card.children[0].style.color = 'forestgreen';
+    //grant a point (async)
+    callScoreAPI('inc', 'pendu');
   }
 }
 
