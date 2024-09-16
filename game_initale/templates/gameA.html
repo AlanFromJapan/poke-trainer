@@ -10,14 +10,14 @@
 <div class="game_result">
   <span id="result"></span> <br/>
   <br/>
-  <div id="suivant" style="display:none;"><a class="next" href='gameA?lastid={{ pokemon.id }}&lastscore={{score}}' >Suivant...</a></div><br/>
+  <div id="suivant" style="display:none;"><a class="next" href='initiale?lastid={{ pokemon.id }}&lastscore={{score}}' >Suivant...</a></div><br/>
   <br/>
 </div>
 
 <div class="game_list">
   {% for card in cards %}
   <div class="gameA_card" onClick="submitResponse(this, '{{ card.letter }}');">
-    <div class="letter {{ letterstyle }} {{lettercase}}">{{ card.letter }}</div>
+    <div class="letter {{ session['letterstyle'] }} {{session['lettercase']}}">{{ card.letter }}</div>
   </div>
   {% endfor %}
 </div>

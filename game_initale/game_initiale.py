@@ -13,10 +13,9 @@ from score_manager import score_manager
 initiale_bp = Blueprint('initiale_bp', __name__, template_folder='templates')
 
 
-@initiale_bp.route("/gameA")
-def gameApage():
+@initiale_bp.route("/initiale")
+def game_initiale():
     class Card:
-        letter = "?"
         def __init__(self, l) -> None:
             self.letter = l
 
@@ -29,7 +28,7 @@ def gameApage():
     cards.append(name[0])
     while len(cards) < myconfig["gameA cards"]:
         l = poorman_textutils.getRandomLetter(session['language'])
-        if not l in cards:
+        if l not in cards:
             cards.append(l)
     
     cards = [Card(x) for x in cards]
@@ -45,16 +44,16 @@ def gameApage():
         current_app.global_render_template_params["scoremgr"].set_score("gameA", 0)
 
 
-    return render_template("gameA.html", pagecontent="test test", cards=cards, letterstyle= session['letterstyle'], lettercase= session['lettercase'], pokemon=pokemon, pokename=name, **current_app.global_render_template_params)
+    return render_template("gameA.html", cards=cards, pokemon=pokemon, pokename=name, **current_app.global_render_template_params)
 
 
 def htmlRenderPageHeader():
-    return """<td><a href="gameA">Jeu: Initiale</a></td>"""
+    return """<td><a href="initiale">Jeu: Initiale</a></td>"""
 
 def htmlRenderHomepageCard():
     return """
 <td>
-    <span class="gamename"><a href="gameA">Initiale</a></span><br/>
+    <span class="gamename"><a href="initiale">Initiale</a></span><br/>
             Trouve la premiere lettre du nom d'un pokemon!
 </td>
 """
