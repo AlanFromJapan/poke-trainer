@@ -2,8 +2,6 @@ from flask import Blueprint, current_app, render_template, session
 import random
 import re
 
-from config import myconfig
-
 from LanguageItem import LanguageItem
 from poorman_textutils import removeAccents
 

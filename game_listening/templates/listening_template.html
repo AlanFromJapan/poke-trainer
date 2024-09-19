@@ -5,7 +5,7 @@
 {% block contents %} 
 
 <h1>Game - Jeu d'ecoute</h1>
-<div class="game_score"><span>Score</span><br/><span class="game_score_val">{{ score }}</span></div>
+<div class="game_score"><span>Score</span><br/><span class="game_score_val">{{ scoremgr.get_score("listening") }}</span></div>
 
 <table class="halfhalf"  style="text-align: center;width: 100%;">
   <tr>
@@ -113,8 +113,8 @@ function checkWin() {
     suiv.style.display = "block";
     suiv.firstChild.focus();
 
-    //highlight
-    card.children[0].style.color = 'forestgreen';
+    //grant a point (async)
+    callScoreAPI('inc', 'listening');
   }
 }
 

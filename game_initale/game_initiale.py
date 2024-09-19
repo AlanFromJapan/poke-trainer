@@ -1,4 +1,4 @@
-from flask import Blueprint, request, render_template, current_app, session
+from flask import Blueprint, render_template, current_app, session
 import random
 
 # NOT using pokebase in the end, the performances are so badm it takes 3-5 sec to get the object though calling the URL + parsing the json is < 250ms
@@ -7,7 +7,6 @@ import random
 from poorman_pokeapi_client import Pokepoor
 import poorman_textutils
 from config import myconfig
-from score_manager import score_manager
 
 
 initiale_bp = Blueprint('initiale_bp', __name__, template_folder='templates')
